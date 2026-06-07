@@ -16,26 +16,23 @@ export function SectionTitle({
   return (
     <div
       className={cn(
-        "mb-16",
+        "mb-10",
         align === "center" && "text-center",
         align === "left" && "text-left",
         className,
       )}
     >
       {subtitle && (
-        <p className="mb-3 text-xs uppercase tracking-[0.35em] text-gold">
-          {subtitle}
-        </p>
+        <p className="font-accent mb-2 text-base text-primary-pink">{subtitle}</p>
       )}
-      <h2 className="font-serif text-3xl leading-tight text-ivory md:text-5xl">
+      <h2 className="font-display text-[26px] leading-tight text-text md:text-3xl">
         {title}
       </h2>
-      <div
-        className={cn(
-          "mt-6 h-px w-16 bg-gradient-to-r from-gold to-transparent",
-          align === "center" && "mx-auto",
-        )}
-      />
+      <div className="mt-3 flex justify-center gap-1">
+        <span className="text-sm">✨</span>
+        <div className="h-1 w-12 rounded-full bg-primary-pink/60" />
+        <span className="text-sm">✨</span>
+      </div>
     </div>
   );
 }

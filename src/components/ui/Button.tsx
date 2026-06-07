@@ -17,16 +17,16 @@ interface ButtonProps {
 
 const variants = {
   primary:
-    "bg-gold text-charcoal hover:bg-gold-light border border-transparent",
+    "bg-primary-pink text-white border-2 border-primary-pink shadow-[0_4px_16px_rgba(255,183,213,0.4)] hover:bg-secondary-pink hover:border-secondary-pink",
   secondary:
-    "bg-transparent text-ivory border border-gold/50 hover:border-gold hover:bg-gold/10",
-  ghost: "bg-transparent text-warm-gray hover:text-ivory border border-transparent",
+    "bg-white/80 text-text border-2 border-sky-blue hover:bg-sky-blue/30",
+  ghost: "bg-transparent text-text-light border-2 border-transparent",
 };
 
 const sizes = {
-  sm: "px-4 py-2 text-xs",
-  md: "px-6 py-3 text-sm",
-  lg: "px-8 py-4 text-base",
+  sm: "px-4 py-2.5 text-base min-h-[44px]",
+  md: "px-6 py-3 text-lg min-h-[48px]",
+  lg: "px-8 py-4 text-xl min-h-[52px] w-full",
 };
 
 export function Button({
@@ -40,7 +40,7 @@ export function Button({
   rel,
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center rounded-full font-medium tracking-wide transition-all duration-300",
+    "inline-flex items-center justify-center rounded-full font-body font-bold transition-all duration-300",
     variants[variant],
     sizes[size],
     className,
@@ -56,8 +56,7 @@ export function Button({
           className={classes}
           target={target}
           rel={rel ?? "noopener noreferrer"}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileTap={{ scale: 0.97 }}
         >
           {children}
         </motion.a>
@@ -65,7 +64,7 @@ export function Button({
     }
 
     return (
-      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+      <motion.div whileTap={{ scale: 0.97 }}>
         <Link href={href} className={classes} target={target} rel={rel}>
           {children}
         </Link>
@@ -78,8 +77,7 @@ export function Button({
       type="button"
       onClick={onClick}
       className={classes}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      whileTap={{ scale: 0.97 }}
     >
       {children}
     </motion.button>

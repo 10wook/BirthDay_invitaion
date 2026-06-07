@@ -1,15 +1,21 @@
 export const theme = {
   colors: {
-    cream: "#F5F0E8",
-    beige: "#E8DFD0",
-    warmGray: "#8A8278",
-    gold: "#C9A962",
-    goldLight: "#E2C878",
-    charcoal: "#1A1814",
-    ivory: "#FAF7F2",
+    primaryPink: "#FFB7D5",
+    secondaryPink: "#FFD6E7",
+    cream: "#FFF7F2",
+    skyBlue: "#CFEFFF",
+    lavender: "#DCCFFF",
+    text: "#5B4B63",
+    textLight: "#8A7A92",
+    white: "#FFFFFF",
   },
   fonts: {
-    serif: "var(--font-cormorant)",
-    sans: "var(--font-noto-sans)",
+    display: "var(--font-bagel)",
+    body: "var(--font-gaegu)",
+    accent: "var(--font-hi-melody)",
+  },
+  mobile: {
+    minWidth: 390,
+    maxWidth: 430,
   },
 } as const;

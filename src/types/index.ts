@@ -16,6 +16,7 @@ export interface SiteConfig {
   mapEmbedUrl?: string;
   rsvpAttendUrl: string;
   rsvpDeclineUrl: string;
+  profileImageSrc: string;
 }
 
 export interface StoryItem {

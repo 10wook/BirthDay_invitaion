@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { MapPin, Navigation } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { registerGsapPlugins } from "@/lib/gsap";
 import { siteConfig } from "@/config/site";
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
@@ -10,9 +10,9 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 import { Button } from "@/components/ui/Button";
 
 const mapLinks = [
-  { label: "카카오맵", href: siteConfig.kakaoMapUrl },
-  { label: "네이버지도", href: siteConfig.naverMapUrl },
-  { label: "구글맵", href: siteConfig.googleMapUrl },
+  { label: "카카오맵 🗺", href: siteConfig.kakaoMapUrl },
+  { label: "네이버지도 📍", href: siteConfig.naverMapUrl },
+  { label: "구글맵 🌍", href: siteConfig.googleMapUrl },
 ];
 
 export function LocationSection() {
@@ -25,14 +25,14 @@ export function LocationSection() {
 
     const ctx = gsap.context(() => {
       gsap.from(section.querySelectorAll("[data-location-animate]"), {
-        y: 30,
+        y: 25,
         opacity: 0,
-        stagger: 0.12,
-        duration: 0.8,
-        ease: "power3.out",
+        stagger: 0.1,
+        duration: 0.7,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: section,
-          start: "top 75%",
+          start: "top 80%",
           toggleActions: "play none none reverse",
         },
       });
@@ -44,65 +44,38 @@ export function LocationSection() {
   return (
     <SectionWrapper id="location">
       <section ref={sectionRef}>
-        <SectionTitle subtitle="Location" title="오시는 길" />
+        <SectionTitle subtitle="📍 Location" title="오시는 길" />
 
-        <div className="flex flex-col gap-10 md:flex-row md:gap-16">
-          <div data-location-animate className="flex-1">
-            <div className="mb-6 flex items-start gap-3">
-              <MapPin className="mt-1 shrink-0 text-gold" size={20} />
-              <div>
-                <h3 className="font-serif text-2xl text-ivory">
-                  {siteConfig.venueName}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-warm-gray">
-                  {siteConfig.address}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-3">
-              {mapLinks.map((link) => (
-                <Button
-                  key={link.label}
-                  variant="secondary"
-                  size="sm"
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="flex items-center gap-2">
-                    <Navigation size={14} />
-                    {link.label}
-                  </span>
-                </Button>
-              ))}
+        <div data-location-animate className="cute-card p-5">
+          <div className="flex items-start gap-3">
+            <MapPin className="mt-0.5 shrink-0 text-primary-pink" size={20} />
+            <div>
+              <h3 className="font-accent text-xl text-text">
+                {siteConfig.venueName}
+              </h3>
+              <p className="font-body mt-1 text-base leading-relaxed text-text-light">
+                {siteConfig.address}
+              </p>
             </div>
           </div>
+        </div>
 
-          <div
-            data-location-animate
-            className="relative aspect-[4/3] flex-1 overflow-hidden rounded-sm bg-beige/10"
-          >
-            {siteConfig.mapEmbedUrl ? (
-              <iframe
-                src={siteConfig.mapEmbedUrl}
-                className="h-full w-full border-0"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="지도"
-              />
-            ) : (
-              <div className="flex h-full flex-col items-center justify-center gap-4 p-8 text-center">
-                <MapPin size={32} className="text-gold/50" />
-                <p className="text-sm text-warm-gray">
-                  site.ts의 mapEmbedUrl에
-                  <br />
-                  지도 embed URL을 추가하세요
-                </p>
-              </div>
-            )}
-          </div>
+        <div
+          data-location-animate
+          className="mt-4 flex flex-col gap-3"
+        >
+          {mapLinks.map((link) => (
+            <Button
+              key={link.label}
+              variant="secondary"
+              size="lg"
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {link.label}
+            </Button>
+          ))}
         </div>
       </section>
     </SectionWrapper>

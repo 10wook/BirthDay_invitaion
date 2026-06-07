@@ -17,30 +17,15 @@ export function TimelineSection() {
     if (!section) return;
 
     const ctx = gsap.context(() => {
-      const line = section.querySelector("[data-timeline-line]");
-      const entries = section.querySelectorAll("[data-timeline-entry]");
-
-      gsap.from(line, {
-        scaleY: 0,
-        transformOrigin: "top center",
-        duration: 1.5,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 60%",
-          toggleActions: "play none none reverse",
-        },
-      });
-
-      entries.forEach((entry, index) => {
+      section.querySelectorAll("[data-timeline-entry]").forEach((entry, i) => {
         gsap.from(entry, {
-          x: index % 2 === 0 ? -80 : 80,
+          x: i % 2 === 0 ? -30 : 30,
           opacity: 0,
-          duration: 1,
-          ease: "power3.out",
+          duration: 0.8,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: entry,
-            start: "top 80%",
+            start: "top 85%",
             toggleActions: "play none none reverse",
           },
         });
@@ -53,50 +38,38 @@ export function TimelineSection() {
   return (
     <SectionWrapper id="timeline">
       <section ref={sectionRef}>
-        <SectionTitle subtitle="Journey" title="함께한 시간" />
+        <SectionTitle subtitle="🗓 Timeline" title="함께한 시간" />
 
-        <div className="relative">
-          <div
-            data-timeline-line
-            className="absolute left-4 top-0 hidden h-full w-px bg-gradient-to-b from-gold/60 via-gold/30 to-transparent md:left-1/2 md:block md:-translate-x-1/2"
-          />
-
-          <div className="flex flex-col gap-20 md:gap-28">
-            {timelineEntries.map((entry, index) => (
-              <div
-                key={entry.year}
-                data-timeline-entry
-                className={`relative flex flex-col gap-8 md:flex-row md:items-center ${
-                  index % 2 === 1 ? "md:flex-row-reverse" : ""
-                }`}
-              >
-                <div className="hidden md:absolute md:left-1/2 md:top-1/2 md:z-10 md:block md:h-3 md:w-3 md:-translate-x-1/2 md:-translate-y-1/2 md:rounded-full md:bg-gold md:shadow-[0_0_20px_rgba(201,169,98,0.5)]" />
-
-                <div className="flex-1 md:px-12">
-                  <span className="font-serif text-5xl text-gold/80 md:text-6xl">
-                    {entry.year}
-                  </span>
-                  <h3 className="mt-2 font-serif text-2xl text-ivory md:text-3xl">
-                    {entry.title}
-                  </h3>
-                  <p className="mt-4 max-w-md text-sm leading-relaxed text-warm-gray">
-                    {entry.description}
-                  </p>
-                </div>
-
-                <div className="relative aspect-[4/3] w-full flex-1 overflow-hidden rounded-sm md:max-w-md">
-                  <Image
-                    src={entry.image}
-                    alt={entry.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 400px"
-                    loading="lazy"
-                  />
-                </div>
+        <div className="flex flex-col gap-8">
+          {timelineEntries.map((entry) => (
+            <div
+              key={entry.year}
+              data-timeline-entry
+              className="cute-card overflow-hidden p-0"
+            >
+              <div className="relative aspect-[16/10] w-full">
+                <Image
+                  src={entry.image}
+                  alt={entry.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 430px) 90vw, 400px"
+                  loading="lazy"
+                />
               </div>
-            ))}
-          </div>
+              <div className="p-5">
+                <span className="font-display text-2xl text-primary-pink">
+                  {entry.year}
+                </span>
+                <h3 className="font-accent mt-1 text-xl text-text">
+                  {entry.title}
+                </h3>
+                <p className="font-body mt-2 text-base leading-relaxed text-text-light">
+                  {entry.description}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
     </SectionWrapper>

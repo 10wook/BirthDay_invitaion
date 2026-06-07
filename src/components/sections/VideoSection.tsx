@@ -22,13 +22,13 @@ export function VideoSection() {
 
     const ctx = gsap.context(() => {
       gsap.from(container, {
-        scale: 0.9,
+        scale: 0.92,
         opacity: 0,
-        duration: 1.2,
-        ease: "power3.out",
+        duration: 0.9,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: section,
-          start: "top 70%",
+          start: "top 75%",
           toggleActions: "play none none reverse",
         },
       });
@@ -36,7 +36,7 @@ export function VideoSection() {
       if (video) {
         ScrollTrigger.create({
           trigger: section,
-          start: "top 60%",
+          start: "top 65%",
           end: "bottom 20%",
           onEnter: () => void video.play().catch(() => undefined),
           onLeave: () => video.pause(),
@@ -50,13 +50,13 @@ export function VideoSection() {
   }, [videoFailed]);
 
   return (
-    <SectionWrapper id="video" className="bg-cream/5">
+    <SectionWrapper id="video">
       <section ref={sectionRef}>
-        <SectionTitle subtitle="Moments" title="소중한 순간들" />
+        <SectionTitle subtitle="🎬 Moments" title="소중한 순간" />
 
         <div
           ref={containerRef}
-          className="relative mx-auto aspect-video w-full max-w-4xl overflow-hidden rounded-sm"
+          className="relative mx-auto aspect-[4/5] w-full max-w-[320px] overflow-hidden rounded-3xl border-2 border-secondary-pink shadow-[0_8px_24px_rgba(255,183,213,0.35)]"
         >
           {!videoFailed ? (
             <video
@@ -71,13 +71,15 @@ export function VideoSection() {
               <source src={siteConfig.memoryVideoSrc} type="video/mp4" />
             </video>
           ) : (
-            <div className="flex h-full w-full items-center justify-center bg-beige/10">
-              <p className="text-sm text-warm-gray">
-                /public/videos/memory.mp4 파일을 추가해 주세요
+            <div className="flex h-full flex-col items-center justify-center bg-secondary-pink/30 p-6 text-center">
+              <span className="text-4xl">🎥</span>
+              <p className="font-body mt-3 text-base text-text-light">
+                /public/videos/memory.mp4
+                <br />
+                파일을 추가해 주세요
               </p>
             </div>
           )}
-          <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-gold/20" />
         </div>
       </section>
     </SectionWrapper>
