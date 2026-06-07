@@ -1,17 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAudio } from "@/components/audio/useAudio";
 import { siteConfig } from "@/config/site";
-import { starterChoices, type StarterChoice } from "@/config/starters";
+import { getStarterChoicesByDuelId, type StarterChoice } from "@/config/starters";
+import { pickRandomDuelId } from "@/config/legendaryDuels";
 import { TypeBadge } from "@/components/ui/TypeBadge";
 import { PokemonSprite } from "@/components/ui/PokemonSprite";
 import { GameTextBox } from "@/components/ui/GameTextBox";
 import { cn } from "@/lib/utils";
 
+const SESSION_KEY = "legendary_duel_id";
+
 export function StarterSelect() {
+  const [duelId, setDuelId] = useState(1);
   const [selected, setSelected] = useState<StarterChoice | null>(null);
   const { playSfx, unlock } = useAudio();
+
+  useEffect(() => {
+    const stored = sessionStorage.getItem(SESSION_KEY);
+    const id = stored ? Number.parseInt(stored, 10) : pickRandomDuelId();
+    if (!stored) sessionStorage.setItem(SESSION_KEY, String(id));
+    setDuelId(Number.isNaN(id) ? 1 : id);
+  }, []);
+
+  const starterChoices = getStarterChoicesByDuelId(duelId);
 
   const choose = (starter: StarterChoice) => {
     unlock();
@@ -28,7 +41,7 @@ export function StarterSelect() {
 
   return (
     <div className="space-y-4">
-      <GameTextBox label="PROFESSOR">
+      <GameTextBox label={`PROFESSOR · GEN ${duelId}`}>
         어떤 포켓몬과 모험을 시작하겠습니까?
       </GameTextBox>
 
@@ -48,13 +61,16 @@ export function StarterSelect() {
                   ▶
                 </span>
               )}
-              <PokemonSprite
-                dexNo={Number.parseInt(starter.dexNo, 10)}
-                name={starter.nameKo}
-                size="sm"
-                className="mx-auto h-14 w-14"
-              />
-              <p className="font-system mt-1 text-[7px] text-game-blue">No.{starter.dexNo}</p>
+              <div className="flex h-14 items-end justify-center overflow-visible pb-0.5">
+                <PokemonSprite
+                  dexNo={starter.dexNo}
+                  name={starter.nameKo}
+                  size="sm"
+                />
+              </div>
+              <p className="font-system mt-1 text-[7px] text-game-blue">
+                No.{String(starter.dexNo).padStart(3, "0")}
+              </p>
               <p className="font-display text-xs font-bold leading-tight">{starter.nameKo}</p>
               <p className="font-system mt-1 text-[6px] leading-snug text-text-light">
                 {starter.choiceLabel}
@@ -66,10 +82,7 @@ export function StarterSelect() {
 
       {selected ? (
         <div className="space-y-3">
-          <GameTextBox showCursor={false}>
-            <span className="font-bold text-poke-red">{selected.nameKo}</span>!{" "}
-            {selected.flavorText}
-          </GameTextBox>
+          <GameTextBox showCursor={false}>{selected.flavorText}</GameTextBox>
           <div className="flex flex-wrap gap-1">
             {selected.types.map((type) => (
               <TypeBadge key={type} type={type} />
