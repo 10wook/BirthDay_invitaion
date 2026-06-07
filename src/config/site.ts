@@ -15,7 +15,7 @@ export const siteConfig: SiteConfig = {
   address: env("NEXT_PUBLIC_ADDRESS", "서울특별시 강남구 테헤란로 123"),
   heroVideoSrc: env("NEXT_PUBLIC_HERO_VIDEO_SRC", "/videos/hero-bg.mp4"),
   memoryVideoSrc: env("NEXT_PUBLIC_MEMORY_VIDEO_SRC", "/videos/memory.mp4"),
-  musicSrc: env("NEXT_PUBLIC_MUSIC_SRC", "/music/bgm.mp3"),
+  musicSrc: env("NEXT_PUBLIC_MUSIC_SRC", "/music/adventure-theme.mp3"),
   kakaoMapUrl: env("NEXT_PUBLIC_KAKAO_MAP_URL", "https://map.kakao.com/"),
   naverMapUrl: env("NEXT_PUBLIC_NAVER_MAP_URL", "https://map.naver.com/"),
   googleMapUrl: env("NEXT_PUBLIC_GOOGLE_MAP_URL", "https://maps.google.com/"),

@@ -1,12 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Bagel_Fat_One } from "next/font/google";
+import { Fredoka, Press_Start_2P } from "next/font/google";
 import { SmoothScrollProvider } from "@/components/layout/SmoothScrollProvider";
 import { getSiteUrl, siteConfig } from "@/config/site";
 import { trainerConfig } from "@/config/trainer";
 import "./globals.css";
 
-const bagel = Bagel_Fat_One({
-  variable: "--font-bagel",
+const fredoka = Fredoka({
+  variable: "--font-fredoka",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
+
+const pressStart = Press_Start_2P({
+  variable: "--font-press-start",
   subsets: ["latin"],
   weight: ["400"],
   display: "swap",
@@ -34,7 +41,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ko" className={bagel.variable}>
+    <html lang="ko" className={`${fredoka.variable} ${pressStart.variable}`}>
       <head>
         <link
           rel="stylesheet"

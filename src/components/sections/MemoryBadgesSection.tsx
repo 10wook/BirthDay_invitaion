@@ -1,14 +1,20 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { registerGsapPlugins } from "@/lib/gsap";
+import { useAudio } from "@/components/audio/useAudio";
 import { memoryBadges } from "@/config/content";
+import type { MemoryBadge } from "@/types";
+import { BadgeDetailModal } from "@/components/modals/BadgeDetailModal";
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import { SectionTitle } from "@/components/ui/SectionTitle";
+import { BadgeTile } from "@/components/ui/BadgeTile";
 
 export function MemoryBadgesSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const [activeBadge, setActiveBadge] = useState<MemoryBadge | null>(null);
+  const { playSfx } = useAudio();
 
   useEffect(() => {
     registerGsapPlugins();
@@ -20,7 +26,7 @@ export function MemoryBadgesSection() {
           scale: 0,
           opacity: 0,
           duration: 0.6,
-          delay: i * 0.08,
+          delay: i * 0.06,
           ease: "back.out(1.7)",
           scrollTrigger: { trigger: el, start: "top 88%" },
         });
@@ -29,24 +35,25 @@ export function MemoryBadgesSection() {
     return () => ctx.revert();
   }, []);
 
+  const handleBadgeClick = (badge: MemoryBadge) => {
+    playSfx("BADGE_UNLOCK");
+    setActiveBadge(badge);
+  };
+
   return (
     <SectionWrapper id="memory-badges">
       <section ref={sectionRef}>
         <SectionTitle subtitle="Achievements" title="Memory Badges" />
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-4 gap-2">
           {memoryBadges.map((badge) => (
-            <div
-              key={badge.id}
-              data-badge
-              className="dex-card flex flex-col items-center p-4 text-center"
-            >
-              <span className="text-3xl">{badge.emoji}</span>
-              <p className="mt-2 text-sm font-bold text-text">{badge.name}</p>
-              <p className="mt-1 text-xs text-text-light">{badge.description}</p>
-            </div>
+            <BadgeTile key={badge.id} badge={badge} onClick={() => handleBadgeClick(badge)} />
           ))}
         </div>
+        <p className="font-system mt-4 text-center text-text-light">
+          BADGES {memoryBadges.length}/{memoryBadges.length}
+        </p>
       </section>
+      <BadgeDetailModal badge={activeBadge} onClose={() => setActiveBadge(null)} />
     </SectionWrapper>
   );
 }

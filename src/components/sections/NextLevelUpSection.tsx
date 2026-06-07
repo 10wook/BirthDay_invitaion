@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import dynamic from "next/dynamic";
 import { registerGsapPlugins } from "@/lib/gsap";
+import { useAudio } from "@/components/audio/useAudio";
 import { useCountdown } from "@/hooks/useCountdown";
 import { trainerConfig } from "@/config/trainer";
 import { siteConfig } from "@/config/site";
@@ -22,6 +23,9 @@ const units = [
 
 function NextLevelDisplay() {
   const gridRef = useRef<HTMLDivElement>(null);
+  const flashRef = useRef<HTMLDivElement>(null);
+  const playedRef = useRef(false);
+  const { playSfx } = useAudio();
   const { days, hours, minutes, seconds, isPast } = useCountdown(siteConfig.eventDate);
   const values = { days, hours, minutes, seconds };
 
@@ -30,21 +34,45 @@ function NextLevelDisplay() {
     const grid = gridRef.current;
     if (!grid) return;
     const ctx = gsap.context(() => {
-      gsap.from("[data-lvl]", { scale: 0.8, opacity: 0, duration: 0.8, scrollTrigger: { trigger: grid, start: "top 85%" } });
+      gsap.from("[data-lvl]", {
+        scale: 0.8,
+        opacity: 0,
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: grid,
+          start: "top 85%",
+          onEnter: () => {
+            if (playedRef.current) return;
+            playedRef.current = true;
+            playSfx("LEVEL_UP");
+            if (flashRef.current) {
+              gsap.fromTo(
+                flashRef.current,
+                { opacity: 0.5 },
+                { opacity: 0, duration: 0.8, ease: "power2.out" },
+              );
+            }
+          },
+        },
+      });
     }, grid);
     return () => ctx.revert();
-  }, []);
+  }, [playSfx]);
 
   return (
-    <div ref={gridRef}>
+    <div ref={gridRef} className="relative">
+      <div
+        ref={flashRef}
+        className="pointer-events-none absolute inset-0 z-10 rounded-2xl bg-primary-yellow opacity-0"
+      />
       <div data-lvl className="mb-6 flex items-center justify-center gap-4">
         <div className="dex-card px-6 py-3 text-center">
-          <p className="text-xs font-bold text-text-light">CURRENT</p>
+          <p className="font-system text-text-light">CURRENT</p>
           <p className="font-display text-3xl">Lv.{trainerConfig.level}</p>
         </div>
-        <span className="text-2xl">↓</span>
+        <span className="animate-bounce text-2xl">↓</span>
         <div className="dex-card border-poke-red px-6 py-3 text-center">
-          <p className="text-xs font-bold text-poke-red">NEXT</p>
+          <p className="font-system text-poke-red">NEXT</p>
           <p className="font-display text-3xl text-poke-red">Lv.{trainerConfig.nextLevel}</p>
         </div>
       </div>

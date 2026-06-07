@@ -1,4 +1,4 @@
-import type { AdventureEntry, GalleryImage, MemoryBadge, PartySlot } from "@/types";
+import type { AdventureEntry, GalleryImage, MemoryBadge } from "@/types";
 
 export const adventureLog: AdventureEntry[] = [
   { year: "2019", title: "University Journey Started", description: "새로운 모험이 시작되었습니다." },
@@ -9,21 +9,78 @@ export const adventureLog: AdventureEntry[] = [
 ];
 
 export const memoryBadges: MemoryBadge[] = [
-  { id: "b1", emoji: "🎓", name: "Soongsil Badge", description: "대학 모험 완료" },
-  { id: "b2", emoji: "🤖", name: "AI Badge", description: "AI 프로젝트 달성" },
-  { id: "b3", emoji: "⚽", name: "Football Badge", description: "팀워크의 힘" },
-  { id: "b4", emoji: "💻", name: "Developer Badge", description: "코드 마스터" },
-  { id: "b5", emoji: "📷", name: "Memory Badge", description: "추억 수집가" },
-  { id: "b6", emoji: "🎂", name: "Birthday Badge", description: "생일 모험 준비" },
-];
-
-export const partySlots: PartySlot[] = [
-  { id: "p1", slotNo: 1, nickname: "Memory #1", memory: "함께한 첫 추억", story: "모험의 시작", image: "/images/gallery/01.jpg" },
-  { id: "p2", slotNo: 2, nickname: "Memory #2", memory: "웃었던 날", story: "행복한 순간", image: "/images/gallery/02.jpg" },
-  { id: "p3", slotNo: 3, nickname: "Memory #3", memory: "특별한 하루", story: "잊지 못할 기억", image: "/images/gallery/03.jpg" },
-  { id: "p4", slotNo: 4, nickname: "Memory #4", memory: "함께한 여정", story: "우정의 힘", image: "/images/gallery/04.jpg" },
-  { id: "p5", slotNo: 5, nickname: "Memory #5", memory: "성장의 기록", story: "한 단계 더", image: "/images/gallery/05.jpg" },
-  { id: "p6", slotNo: 6, nickname: "Memory #6", memory: "다음 모험", story: "레벨 업 준비!", image: "/images/story/01.jpg" },
+  {
+    id: "b1",
+    emoji: "🎓",
+    name: "Soongsil Badge",
+    description: "대학 모험 완료",
+    story: "숭실대학교에서 시작된 첫 번째 모험. 새로운 세계를 향한 첫걸음.",
+    memory: "캠퍼스에서 만난 친구들과 함께한 시간",
+    image: "/images/gallery/01.jpg",
+  },
+  {
+    id: "b2",
+    emoji: "🤖",
+    name: "AI Badge",
+    description: "AI 프로젝트 달성",
+    story: "인공지능 트레이너로서의 첫 도전. 모델을 훈련시키는 즐거움.",
+    memory: "첫 AI 프로젝트가 성공했던 날",
+    image: "/images/gallery/02.jpg",
+  },
+  {
+    id: "b3",
+    emoji: "💻",
+    name: "Developer Badge",
+    description: "코드 마스터",
+    story: "밤새 코딩하며 성장한 개발자의 여정.",
+    memory: "버그를 잡고 배포에 성공한 순간",
+    image: "/images/gallery/03.jpg",
+  },
+  {
+    id: "b4",
+    emoji: "⚽",
+    name: "Football Badge",
+    description: "팀워크의 힘",
+    story: "필드 위에서 배운 협동과 열정.",
+    memory: "함께 땀 흘리며 이긴 경기",
+    image: "/images/gallery/04.jpg",
+  },
+  {
+    id: "b5",
+    emoji: "📷",
+    name: "Memory Badge",
+    description: "추억 수집가",
+    story: "소중한 순간들을 사진에 담아두었습니다.",
+    memory: "친구들과 찍은 추억의 한 장",
+    image: "/images/gallery/05.jpg",
+  },
+  {
+    id: "b6",
+    emoji: "☕",
+    name: "Cafe Badge",
+    description: "카페 모험",
+    story: "카페에서의 대화와 아이디어. 작은 공간에서 큰 꿈.",
+    memory: "코딩하며 마신 수많은 커피",
+    image: "/images/gallery/01.jpg",
+  },
+  {
+    id: "b7",
+    emoji: "🎮",
+    name: "Adventure Badge",
+    description: "게임 모험",
+    story: "게임처럼 즐거운 인생. 레벨업을 향해!",
+    memory: "친구들과 함께한 게임의 밤",
+    image: "/images/gallery/02.jpg",
+  },
+  {
+    id: "b8",
+    emoji: "🎂",
+    name: "Birthday Badge",
+    description: "생일 모험 준비",
+    story: "Lv.27로 진화하기 위한 최종 배지.",
+    memory: "9월 12일, 함께할 모험",
+    image: "/images/hero/profile.jpg",
+  },
 ];
 
 export const galleryImages: GalleryImage[] = [

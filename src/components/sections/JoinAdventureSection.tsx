@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { registerGsapPlugins } from "@/lib/gsap";
+import { useAudio } from "@/components/audio/useAudio";
 import { siteConfig } from "@/config/site";
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import { SectionTitle } from "@/components/ui/SectionTitle";
@@ -17,7 +18,10 @@ export function JoinAdventureSection() {
     if (!section) return;
     const ctx = gsap.context(() => {
       gsap.from(section.querySelectorAll("[data-rsvp]"), {
-        y: 20, opacity: 0, stagger: 0.1, duration: 0.6,
+        y: 20,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.6,
         scrollTrigger: { trigger: section, start: "top 80%" },
       });
     }, section);
@@ -32,7 +36,7 @@ export function JoinAdventureSection() {
         <SectionTitle subtitle="RSVP" title="Join The Adventure" />
         <div className="flex flex-col gap-3">
           <div data-rsvp>
-            <Button variant="primary" size="lg" onClick={() => open(siteConfig.rsvpAttendUrl)}>
+            <Button variant="primary" size="lg" sfx="CONFIRM" onClick={() => open(siteConfig.rsvpAttendUrl)}>
               ● Join Adventure
             </Button>
           </div>

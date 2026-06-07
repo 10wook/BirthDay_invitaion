@@ -2,15 +2,19 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import Image from "next/image";
 import { registerGsapPlugins } from "@/lib/gsap";
-import { partySlots } from "@/config/content";
+import { useAudio } from "@/components/audio/useAudio";
+import pokemonData from "@/data/pokemon.json";
+import type { PokemonEntry } from "@/types/pokemon";
+import { PokemonDetailModal } from "@/components/modals/PokemonDetailModal";
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import { SectionTitle } from "@/components/ui/SectionTitle";
+import { PokemonCard } from "@/components/ui/PokemonCard";
 
 export function PartyPokemonSection() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [active, setActive] = useState<string | null>(null);
+  const [activePokemon, setActivePokemon] = useState<PokemonEntry | null>(null);
+  const { playSfx } = useAudio();
 
   useEffect(() => {
     registerGsapPlugins();
@@ -28,45 +32,29 @@ export function PartyPokemonSection() {
     return () => ctx.revert();
   }, []);
 
+  const handleCardClick = (pokemon: PokemonEntry) => {
+    playSfx("POKEDEX_OPEN");
+    setActivePokemon(pokemon);
+  };
+
   return (
     <SectionWrapper id="party">
       <section ref={sectionRef}>
-        <SectionTitle subtitle="Party" title="Party Members" />
+        <SectionTitle subtitle="Party" title="Party Pokémon" />
         <div className="grid grid-cols-2 gap-3">
-          {partySlots.map((slot) => (
-            <button
-              key={slot.id}
-              type="button"
-              data-party
-              onClick={() => setActive(active === slot.id ? null : slot.id)}
-              className="dex-card overflow-hidden p-0 text-left transition-transform active:scale-[0.98]"
-            >
-              <div className="relative aspect-square w-full">
-                <Image
-                  src={slot.image}
-                  alt={slot.nickname}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 430px) 45vw"
-                  loading="lazy"
-                />
-                <span className="absolute left-2 top-2 rounded-md bg-poke-red px-2 py-0.5 text-xs font-bold text-white">
-                  #{slot.slotNo}
-                </span>
-              </div>
-              <div className="p-3">
-                <p className="text-sm font-bold">{slot.nickname}</p>
-                {active === slot.id && (
-                  <p className="mt-1 text-xs text-text-light">{slot.story}</p>
-                )}
-              </div>
-            </button>
+          {pokemonData.party.map((pokemon) => (
+            <PokemonCard
+              key={pokemon.id}
+              pokemon={pokemon}
+              onClick={() => handleCardClick(pokemon)}
+            />
           ))}
         </div>
-        <p className="mt-3 text-center text-xs text-text-light">
-          Tap a slot to view memory
+        <p className="font-system mt-3 text-center text-text-light">
+          Tap a Pokémon to open Pokédex entry
         </p>
       </section>
+      <PokemonDetailModal pokemon={activePokemon} onClose={() => setActivePokemon(null)} />
     </SectionWrapper>
   );
 }

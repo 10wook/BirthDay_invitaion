@@ -13,13 +13,13 @@ import { StatBar } from "@/components/ui/StatBar";
 
 const stats = [
   { label: "Name", value: trainerConfig.name },
-  { label: "Trainer No.", value: `#${trainerConfig.trainerNo}` },
+  { label: "Trainer No.", value: trainerConfig.trainerNo },
   { label: "Region", value: trainerConfig.region },
   { label: "Class", value: trainerConfig.trainerClass },
   { label: "Type", value: trainerConfig.type },
   { label: "Level", value: `Lv.${trainerConfig.level}` },
   { label: "Birthday", value: trainerConfig.birthday },
-  { label: "Rank", value: trainerConfig.rank },
+  { label: "Trainer Rank", value: trainerConfig.rank },
 ];
 
 export function TrainerProfileSection() {
@@ -65,7 +65,7 @@ export function TrainerProfileSection() {
           <div data-profile className="mb-4 grid grid-cols-2 gap-2">
             {stats.map((s) => (
               <div key={s.label} className="rounded-lg bg-white/60 px-3 py-2">
-                <p className="text-[10px] font-bold uppercase text-text-light">{s.label}</p>
+                <p className="font-system text-[8px] text-text-light">{s.label.toUpperCase()}</p>
                 <p className="text-sm font-bold text-text">{s.value}</p>
               </div>
             ))}
@@ -74,6 +74,26 @@ export function TrainerProfileSection() {
             <StatBar label="HP" value={trainerConfig.hp} color="hp" />
             <StatBar label="EXP" value={trainerConfig.exp} color="exp" />
           </div>
+          <div data-profile className="mt-4 grid grid-cols-2 gap-2">
+            <div className="rounded-lg bg-grass-green/20 px-3 py-2 text-center">
+              <p className="font-system text-[8px] text-text-light">BADGES</p>
+              <p className="font-display text-lg">
+                {trainerConfig.badgeCount}/{trainerConfig.badgeCount}
+              </p>
+            </div>
+            <div className="rounded-lg bg-sky-blue/30 px-3 py-2 text-center">
+              <p className="font-system text-[8px] text-text-light">PARTY</p>
+              <p className="font-display text-lg">
+                {trainerConfig.partyCount}/{trainerConfig.partyCount}
+              </p>
+            </div>
+          </div>
+          <p
+            data-profile
+            className="font-system mt-4 rounded-lg border-2 border-dex-border bg-primary-yellow py-2 text-center text-poke-red"
+          >
+            POKÉDEX ENTRY COMPLETE
+          </p>
         </DexCard>
       </section>
     </SectionWrapper>

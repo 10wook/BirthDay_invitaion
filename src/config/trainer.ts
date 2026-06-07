@@ -13,5 +13,7 @@ export const trainerConfig: TrainerConfig = {
   type: "AI Trainer",
   hp: 100,
   exp: 85,
-  rank: "Advanced Trainer",
+  rank: "MASTER TRAINER",
+  badgeCount: 8,
+  partyCount: 6,
 };

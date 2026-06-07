@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useAudio } from "@/components/audio/useAudio";
+import type { SfxKey } from "@/lib/audio/sfxMap";
 import { cn } from "@/lib/utils";
 
 interface ButtonProps {
@@ -13,6 +15,7 @@ interface ButtonProps {
   className?: string;
   target?: string;
   rel?: string;
+  sfx?: SfxKey | "none";
 }
 
 const variants = {
@@ -38,7 +41,16 @@ export function Button({
   className,
   target,
   rel,
+  sfx = "CLICK",
 }: ButtonProps) {
+  const { playSfx, unlock } = useAudio();
+
+  const handleClick = () => {
+    unlock();
+    if (sfx !== "none") playSfx(sfx);
+    onClick?.();
+  };
+
   const classes = cn(
     "inline-flex items-center justify-center rounded-xl font-bold transition-all",
     variants[variant],
@@ -56,6 +68,10 @@ export function Button({
           target={target}
           rel={rel ?? "noopener noreferrer"}
           whileTap={{ scale: 0.97 }}
+          onClick={() => {
+            unlock();
+            if (sfx !== "none") playSfx(sfx);
+          }}
         >
           {children}
         </motion.a>
@@ -63,13 +79,15 @@ export function Button({
     }
     return (
       <motion.div whileTap={{ scale: 0.97 }}>
-        <Link href={href} className={classes}>{children}</Link>
+        <Link href={href} className={classes} onClick={handleClick}>
+          {children}
+        </Link>
       </motion.div>
     );
   }
 
   return (
-    <motion.button type="button" onClick={onClick} className={classes} whileTap={{ scale: 0.97 }}>
+    <motion.button type="button" onClick={handleClick} className={classes} whileTap={{ scale: 0.97 }}>
       {children}
     </motion.button>
   );

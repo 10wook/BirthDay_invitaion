@@ -34,6 +34,8 @@ export interface TrainerConfig {
   hp: number;
   exp: number;
   rank: string;
+  badgeCount: number;
+  partyCount: number;
 }
 
 export interface AdventureEntry {
@@ -47,14 +49,8 @@ export interface MemoryBadge {
   emoji: string;
   name: string;
   description: string;
-}
-
-export interface PartySlot {
-  id: string;
-  slotNo: number;
-  nickname: string;
-  memory: string;
   story: string;
+  memory: string;
   image: string;
 }
 

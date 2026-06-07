@@ -10,8 +10,8 @@ export function SectionTitle({ subtitle, title, className }: SectionTitleProps) 
   return (
     <div className={cn("mb-8 text-center", className)}>
       {subtitle && (
-        <p className="mb-1 text-xs font-bold uppercase tracking-widest text-poke-red">
-          {subtitle}
+        <p className="font-system mb-1 text-poke-red">
+          {subtitle.toUpperCase()}
         </p>
       )}
       <h2 className="font-display text-2xl text-text md:text-3xl">{title}</h2>

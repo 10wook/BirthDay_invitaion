@@ -7,11 +7,11 @@ export const theme = {
     cream: "#FFF8E8",
     text: "#4B4B4B",
     textLight: "#7A7A7A",
-    white: "#FFFFFF",
     dexBorder: "#4B4B4B",
   },
   fonts: {
-    display: "var(--font-bagel)",
-    body: "Pretendard, var(--font-pretendard-fallback), sans-serif",
+    display: "var(--font-fredoka)",
+    body: "Pretendard, sans-serif",
+    system: "var(--font-press-start)",
   },
 } as const;
