@@ -6,6 +6,7 @@ import { trainerConfig } from "@/config/trainer";
 import { PokedexLoadingScreen } from "@/components/sections/PokedexLoadingScreen";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { PokeballDecorations } from "@/components/decorations/PokeballDecorations";
+import { LegendaryDuelBackground } from "@/components/decorations/LegendaryDuelBackground";
 
 const TrainerProfileSection = dynamic(() =>
   import("@/components/sections/TrainerProfileSection").then((m) => m.TrainerProfileSection),
@@ -51,6 +52,7 @@ export function InvitationPage() {
 
   return (
     <>
+      <LegendaryDuelBackground />
       <PokeballDecorations />
       {loading && <PokedexLoadingScreen onComplete={() => setLoading(false)} />}
       {!loading && (
