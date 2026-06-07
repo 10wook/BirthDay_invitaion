@@ -221,25 +221,35 @@ body {
   position: absolute;
   inset: 18% 4% auto;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  height: 88px;
+  height: 96px;
 }
 
 .legendary-duel__fighter {
   flex-shrink: 0;
+  display: flex;
+  align-items: flex-end;
+  height: 72px;
   opacity: 0.82;
 }
 
-.duel-sprite-wrap {
-  display: inline-block;
+.duel-lunge {
+  display: flex;
+  align-items: flex-end;
+  height: 72px;
 }
 
-.legendary-duel__fighter--left {
+.duel-sprite {
+  object-position: bottom center;
+  transform-origin: bottom center;
+}
+
+.duel-lunge--left {
   animation: duel-lunge-left 2.4s ease-in-out infinite;
 }
 
-.legendary-duel__fighter--right {
+.duel-lunge--right {
   animation: duel-lunge-right 2.4s ease-in-out infinite;
 }
 
