@@ -1,5 +1,6 @@
 export interface PokemonEntry {
   id: string;
+  dexNo: number;
   emoji: string;
   name: string;
   level: number;

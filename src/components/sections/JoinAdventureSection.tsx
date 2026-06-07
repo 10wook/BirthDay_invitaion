@@ -3,11 +3,9 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { registerGsapPlugins } from "@/lib/gsap";
-import { useAudio } from "@/components/audio/useAudio";
-import { siteConfig } from "@/config/site";
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { Button } from "@/components/ui/Button";
+import { StarterSelect } from "@/components/ui/StarterSelect";
 
 export function JoinAdventureSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -28,28 +26,12 @@ export function JoinAdventureSection() {
     return () => ctx.revert();
   }, []);
 
-  const open = (url: string) => window.open(url, "_blank", "noopener,noreferrer");
-
   return (
     <SectionWrapper id="join-adventure">
       <section ref={sectionRef}>
-        <SectionTitle subtitle="RSVP" title="Join The Adventure" />
-        <div className="flex flex-col gap-3">
-          <div data-rsvp>
-            <Button variant="primary" size="lg" sfx="CONFIRM" onClick={() => open(siteConfig.rsvpAttendUrl)}>
-              ● Join Adventure
-            </Button>
-          </div>
-          <div data-rsvp>
-            <Button variant="secondary" size="lg" onClick={() => open(siteConfig.rsvpMaybeUrl)}>
-              ◐ Maybe
-            </Button>
-          </div>
-          <div data-rsvp>
-            <Button variant="ghost" size="lg" onClick={() => open(siteConfig.rsvpDeclineUrl)}>
-              ○ Cannot Join
-            </Button>
-          </div>
+        <SectionTitle subtitle="Starter" title="Choose Your Partner" />
+        <div data-rsvp>
+          <StarterSelect />
         </div>
       </section>
     </SectionWrapper>

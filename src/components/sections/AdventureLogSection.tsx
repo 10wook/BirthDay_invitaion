@@ -6,7 +6,7 @@ import { registerGsapPlugins } from "@/lib/gsap";
 import { adventureLog } from "@/config/content";
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { DexCard } from "@/components/ui/DexCard";
+import { GameTextBox } from "@/components/ui/GameTextBox";
 
 export function AdventureLogSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -34,12 +34,13 @@ export function AdventureLogSection() {
         <SectionTitle subtitle="Journey Log" title="Adventure Log" />
         <div className="space-y-4">
           {adventureLog.map((entry) => (
-            <DexCard key={entry.year} data-log className="relative pl-4">
-              <div className="absolute left-0 top-0 h-full w-1 rounded-full bg-poke-red" />
-              <p className="font-display text-lg text-poke-red">{entry.year}</p>
-              <p className="font-bold text-text">{entry.title}</p>
-              <p className="mt-1 text-sm text-text-light">{entry.description}</p>
-            </DexCard>
+            <div key={entry.year} data-log>
+              <GameTextBox label={`YEAR ${entry.year}`} showCursor={false}>
+                <span className="font-bold">{entry.title}</span>
+                <br />
+                {entry.description}
+              </GameTextBox>
+            </div>
           ))}
         </div>
       </section>

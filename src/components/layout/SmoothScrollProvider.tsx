@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useLenis } from "@/hooks/useLenis";
+import { LenisProvider } from "@/components/layout/LenisProvider";
 import { AudioProvider } from "@/components/audio/AudioProvider";
 import { useAudio } from "@/components/audio/useAudio";
 import { FloatingMusicButton } from "./FloatingMusicButton";
@@ -12,7 +12,6 @@ interface SmoothScrollProviderProps {
 }
 
 function AudioUI({ children }: { children: React.ReactNode }) {
-  useLenis();
   const {
     isPlaying,
     isReady,
@@ -64,8 +63,10 @@ function AudioUI({ children }: { children: React.ReactNode }) {
 
 export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
   return (
-    <AudioProvider>
-      <AudioUI>{children}</AudioUI>
-    </AudioProvider>
+    <LenisProvider>
+      <AudioProvider>
+        <AudioUI>{children}</AudioUI>
+      </AudioProvider>
+    </LenisProvider>
   );
 }

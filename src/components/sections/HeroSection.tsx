@@ -6,10 +6,10 @@ import { registerGsapPlugins } from "@/lib/gsap";
 import { useAudio } from "@/components/audio/useAudio";
 import { trainerConfig } from "@/config/trainer";
 import pokemonData from "@/data/pokemon.json";
-import { FloatingClouds } from "@/components/decorations/FloatingClouds";
-import { SparkleField } from "@/components/decorations/SparkleField";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 import { Button } from "@/components/ui/Button";
+import { GameTextBox } from "@/components/ui/GameTextBox";
+import { PokemonSprite } from "@/components/ui/PokemonSprite";
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -46,41 +46,48 @@ export function HeroSection() {
       id="hero"
       className="relative z-[2] flex h-[100dvh] min-h-[640px] flex-col items-center justify-center px-4"
     >
-      <FloatingClouds />
-      <SparkleField />
-      <div ref={contentRef} className="dex-screen relative mx-auto w-full max-w-[430px] p-6 text-center">
-        <p data-hero className="font-system text-poke-red">
-          POKÉDEX ENTRY
+      <div ref={contentRef} className="game-window dex-screen relative mx-auto w-full max-w-[430px] p-5">
+        <p data-hero className="font-system text-center text-[8px] text-game-blue">
+          ■ POKÉDEX ENTRY
         </p>
-        <p data-hero className="font-system mt-2 text-text-light">
+        <p data-hero className="font-system mt-2 text-center text-poke-red">
           No.{trainerConfig.trainerNo}
         </p>
-        <h1 data-hero className="font-display mt-3 text-3xl leading-tight text-text">
+        <h1 data-hero className="font-display mt-2 text-center text-2xl font-bold leading-tight">
           {trainerConfig.name.toUpperCase()}
         </h1>
-        <p data-hero className="mt-2 text-lg font-bold text-text">
-          Birthday Adventure
+        <p data-hero className="font-system mt-2 text-center text-[8px]">
+          Lv.{trainerConfig.level} · {trainerConfig.region}
         </p>
-        <p data-hero className="mt-1 text-base text-text-light">
-          {trainerConfig.birthday}
-        </p>
-        <div data-hero className="mt-8">
+
+        <div data-hero className="mt-4">
+          <GameTextBox showCursor={false}>
+            {trainerConfig.birthday}에 레벨 {trainerConfig.nextLevel}로 진화하는 생일 모험이 시작됩니다!
+          </GameTextBox>
+        </div>
+
+        <div data-hero className="mt-5">
           <Button variant="primary" size="lg" sfx="START" onClick={() => scrollTo("trainer-profile", "START")}>
             ▶ PRESS START
           </Button>
         </div>
-        <div data-hero className="mt-8 border-t-2 border-dex-border/30 pt-6">
-          <p className="font-system text-text-light">CURRENT PARTY</p>
-          <p className="mt-2 text-2xl tracking-widest">
-            {pokemonData.party.map((p) => p.emoji).join(" ")}
-          </p>
-          <button
-            type="button"
-            onClick={() => scrollTo("party", "PARTY_OPEN")}
-            className="mt-3 text-sm font-bold text-poke-red underline-offset-2 hover:underline"
-          >
-            View Party →
-          </button>
+
+        <div data-hero className="mt-4 game-window p-3">
+          <div className="flex items-center justify-between">
+            <p className="font-system text-[8px]">PARTY</p>
+            <button
+              type="button"
+              onClick={() => scrollTo("party", "PARTY_OPEN")}
+              className="font-system text-[8px] text-game-blue hover:underline"
+            >
+              OPEN →
+            </button>
+          </div>
+          <div className="mt-2 flex flex-wrap items-end justify-center gap-1">
+            {pokemonData.party.map((p) => (
+              <PokemonSprite key={p.id} dexNo={p.dexNo} name={p.name} size="xs" />
+            ))}
+          </div>
         </div>
       </div>
       <ScrollIndicator />

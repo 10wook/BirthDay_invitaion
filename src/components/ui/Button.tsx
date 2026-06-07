@@ -20,16 +20,17 @@ interface ButtonProps {
 
 const variants = {
   primary:
-    "bg-poke-red text-white border-2 border-dex-border shadow-[3px_3px_0_#4B4B4B] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#4B4B4B]",
+    "bg-poke-red text-white border-[3px] border-dex-border shadow-[inset_0_0_0_2px_#fff,inset_0_0_0_4px_#383838,4px_4px_0_#383838] hover:translate-x-[1px] hover:translate-y-[1px]",
   secondary:
-    "bg-primary-yellow text-text border-2 border-dex-border shadow-[3px_3px_0_#4B4B4B]",
-  ghost: "bg-white/80 text-text border-2 border-dex-border",
+    "bg-primary-yellow text-text border-[3px] border-dex-border shadow-[inset_0_0_0_2px_#fff,inset_0_0_0_4px_#383838,4px_4px_0_#383838]",
+  ghost:
+    "bg-cream text-text border-[3px] border-dex-border shadow-[inset_0_0_0_2px_#fff,2px_2px_0_#383838]",
 };
 
 const sizes = {
-  sm: "px-4 py-2 text-sm min-h-[44px]",
-  md: "px-6 py-3 text-base min-h-[48px]",
-  lg: "px-6 py-4 text-base min-h-[52px] w-full",
+  sm: "px-4 py-2 min-h-[44px] font-system text-[10px]",
+  md: "px-6 py-3 min-h-[48px] font-system text-[10px]",
+  lg: "px-6 py-4 min-h-[52px] w-full font-system text-[10px]",
 };
 
 export function Button({
@@ -52,7 +53,7 @@ export function Button({
   };
 
   const classes = cn(
-    "inline-flex items-center justify-center rounded-xl font-bold transition-all",
+    "inline-flex items-center justify-center rounded-md font-bold transition-all",
     variants[variant],
     sizes[size],
     className,

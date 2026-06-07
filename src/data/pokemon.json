@@ -2,6 +2,7 @@
   "party": [
     {
       "id": "lapras",
+      "dexNo": 131,
       "emoji": "🌊",
       "name": "Lapras",
       "level": 30,
@@ -15,6 +16,7 @@
     },
     {
       "id": "victini",
+      "dexNo": 494,
       "emoji": "🎉",
       "name": "Victini",
       "level": 30,
@@ -28,6 +30,7 @@
     },
     {
       "id": "quilava",
+      "dexNo": 156,
       "emoji": "🔥",
       "name": "Quilava",
       "level": 30,
@@ -41,6 +44,7 @@
     },
     {
       "id": "umbreon",
+      "dexNo": 197,
       "emoji": "🌙",
       "name": "Umbreon",
       "level": 30,
@@ -54,6 +58,7 @@
     },
     {
       "id": "ditto",
+      "dexNo": 132,
       "emoji": "🧬",
       "name": "Ditto",
       "level": 30,
@@ -67,6 +72,7 @@
     },
     {
       "id": "zapdos",
+      "dexNo": 145,
       "emoji": "⚡",
       "name": "Zapdos",
       "level": 30,
