@@ -8,14 +8,13 @@ interface SectionTitleProps {
 
 export function SectionTitle({ subtitle, title, className }: SectionTitleProps) {
   return (
-    <div className={cn("mb-8 text-center", className)}>
+    <div className={cn("game-window mb-6 px-4 py-3 text-center", className)}>
       {subtitle && (
-        <p className="font-system mb-1 text-poke-red">
-          {subtitle.toUpperCase()}
+        <p className="font-system text-[8px] text-game-blue">
+          ■ {subtitle.toUpperCase()}
         </p>
       )}
-      <h2 className="font-display text-2xl text-text md:text-3xl">{title}</h2>
-      <div className="mx-auto mt-2 h-1 w-16 rounded-full bg-primary-yellow" />
+      <h2 className="font-display mt-1 text-xl font-bold text-text md:text-2xl">{title}</h2>
     </div>
   );
 }

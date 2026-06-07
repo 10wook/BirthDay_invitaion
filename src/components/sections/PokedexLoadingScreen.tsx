@@ -20,10 +20,10 @@ export function PokedexLoadingScreen({ onComplete }: PokedexLoadingScreenProps) 
 
   useEffect(() => {
     const messages = [
-      "Scanning Trainer...",
+      "SCANNING TRAINER...",
       "██████████ 100%",
-      "Trainer Found",
-      "Pokédex Entry Loaded",
+      "TRAINER FOUND",
+      "POKÉDEX ENTRY LOADED",
       `No.${trainerConfig.trainerNo}`,
     ];
     let i = 0;
@@ -45,7 +45,7 @@ export function PokedexLoadingScreen({ onComplete }: PokedexLoadingScreenProps) 
       });
       gsap.to(scanRef.current, {
         y: "200%",
-        duration: 1.2,
+        duration: 0.8,
         repeat: -1,
         ease: "none",
       });
@@ -71,22 +71,22 @@ export function PokedexLoadingScreen({ onComplete }: PokedexLoadingScreenProps) 
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-cream px-6"
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-[#7ecbff] px-6"
     >
-      <div className="dex-screen relative w-full max-w-[360px] overflow-hidden p-6">
+      <div className="dex-screen scan-lines relative w-full max-w-[360px] overflow-hidden p-6">
         <div
           ref={scanRef}
-          className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-grass-green/60"
+          className="pointer-events-none absolute inset-x-0 top-0 z-10 h-2 bg-gradient-to-b from-transparent via-[#78C850]/80 to-transparent"
         />
-        <p className="font-display mb-4 text-center text-lg text-text">POKÉDEX</p>
-        <div className="mb-4 h-4 overflow-hidden rounded-full border-2 border-dex-border bg-white">
-          <div ref={barRef} className="h-full w-0 rounded-full bg-grass-green" />
+        <p className="font-system mb-4 text-center text-[10px] text-game-blue">■ POKÉDEX</p>
+        <div className="mb-4 h-4 overflow-hidden border-2 border-dex-border bg-[#383838] p-0.5">
+          <div ref={barRef} className="h-full w-0 bg-[#78C850]" />
         </div>
         <div className="min-h-[120px] space-y-2">
           {lines.map((line, idx) => (
             <p
               key={idx}
-              className={idx === 0 ? "font-system text-xs text-text" : "text-sm text-text"}
+              className={idx === 0 ? "font-system text-[8px] text-text" : "text-sm text-text"}
             >
               {line}
             </p>

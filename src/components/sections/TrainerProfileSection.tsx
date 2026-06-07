@@ -10,7 +10,6 @@ import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { DexCard } from "@/components/ui/DexCard";
 import { StatBar } from "@/components/ui/StatBar";
-
 const stats = [
   { label: "Name", value: trainerConfig.name },
   { label: "Trainer No.", value: trainerConfig.trainerNo },
@@ -48,7 +47,7 @@ export function TrainerProfileSection() {
         <SectionTitle subtitle="Trainer Data" title="Trainer Profile" />
         <DexCard>
           <div data-profile className="mb-4 flex items-center gap-4">
-            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 border-dex-border">
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden border-[3px] border-dex-border bg-[#C8F0C0]">
               <Image
                 src={siteConfig.profileImageSrc}
                 alt={trainerConfig.name}
@@ -59,13 +58,13 @@ export function TrainerProfileSection() {
             </div>
             <div>
               <p className="font-display text-xl">{trainerConfig.nameKo}</p>
-              <p className="text-sm text-text-light">{trainerConfig.type}</p>
+              <p className="font-system text-[8px] text-game-blue">{trainerConfig.type.toUpperCase()}</p>
             </div>
           </div>
           <div data-profile className="mb-4 grid grid-cols-2 gap-2">
             {stats.map((s) => (
-              <div key={s.label} className="rounded-lg bg-white/60 px-3 py-2">
-                <p className="font-system text-[8px] text-text-light">{s.label.toUpperCase()}</p>
+              <div key={s.label} className="game-window border-2 p-2 shadow-[inset_0_0_0_2px_#fff,2px_2px_0_#383838]">
+                <p className="font-system text-[7px] text-text-light">{s.label.toUpperCase()}</p>
                 <p className="text-sm font-bold text-text">{s.value}</p>
               </div>
             ))}
@@ -75,14 +74,14 @@ export function TrainerProfileSection() {
             <StatBar label="EXP" value={trainerConfig.exp} color="exp" />
           </div>
           <div data-profile className="mt-4 grid grid-cols-2 gap-2">
-            <div className="rounded-lg bg-grass-green/20 px-3 py-2 text-center">
-              <p className="font-system text-[8px] text-text-light">BADGES</p>
+            <div className="game-window border-2 p-3 text-center shadow-[inset_0_0_0_2px_#fff,2px_2px_0_#383838]">
+              <p className="font-system text-[7px] text-text-light">BADGES</p>
               <p className="font-display text-lg">
                 {trainerConfig.badgeCount}/{trainerConfig.badgeCount}
               </p>
             </div>
-            <div className="rounded-lg bg-sky-blue/30 px-3 py-2 text-center">
-              <p className="font-system text-[8px] text-text-light">PARTY</p>
+            <div className="game-window border-2 p-3 text-center shadow-[inset_0_0_0_2px_#fff,2px_2px_0_#383838]">
+              <p className="font-system text-[7px] text-text-light">PARTY</p>
               <p className="font-display text-lg">
                 {trainerConfig.partyCount}/{trainerConfig.partyCount}
               </p>
@@ -90,9 +89,9 @@ export function TrainerProfileSection() {
           </div>
           <p
             data-profile
-            className="font-system mt-4 rounded-lg border-2 border-dex-border bg-primary-yellow py-2 text-center text-poke-red"
+            className="font-system mt-4 border-[3px] border-dex-border bg-primary-yellow py-2 text-center text-poke-red shadow-[inset_0_0_0_2px_#fff,3px_3px_0_#383838]"
           >
-            POKÉDEX ENTRY COMPLETE
+            ■ POKÉDEX ENTRY COMPLETE
           </p>
         </DexCard>
       </section>
