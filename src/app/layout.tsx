@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Noto_Sans_KR } from "next/font/google";
 import { SmoothScrollProvider } from "@/components/layout/SmoothScrollProvider";
-import { siteConfig } from "@/config/site";
+import { getSiteUrl, siteConfig } from "@/config/site";
 import "./globals.css";
 
 const cormorant = Cormorant_Garamond({
@@ -19,12 +19,14 @@ const notoSans = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: `${siteConfig.hostName}의 ${siteConfig.partyTitle}`,
   description: `${siteConfig.hostName}의 생일 파티에 초대합니다. ${siteConfig.eventDateDisplay}`,
   openGraph: {
     title: `${siteConfig.hostName}의 ${siteConfig.partyTitle}`,
     description: "특별한 날, 함께해 주세요.",
     type: "website",
+    locale: "ko_KR",
   },
 };
 
