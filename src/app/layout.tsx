@@ -35,6 +35,13 @@ export const metadata: Metadata = {
     description: "Press Start to join the adventure!",
     type: "website",
     locale: "ko_KR",
+    siteName: "Pokédex Birthday Invitation",
+    url: getSiteUrl(),
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `Trainer ${trainerConfig.name} — Birthday Adventure`,
+    description: "Press Start to join the adventure!",
   },
 };
 
