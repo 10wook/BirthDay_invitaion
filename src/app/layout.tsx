@@ -37,11 +37,20 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     siteName: "Pokédex Birthday Invitation",
     url: getSiteUrl(),
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: `${trainerConfig.nameKo} Birthday Adventure`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `Trainer ${trainerConfig.name} — Birthday Adventure`,
     description: "Press Start to join the adventure!",
+    images: ["/og-image.png"],
   },
 };
 
