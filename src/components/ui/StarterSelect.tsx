@@ -15,7 +15,7 @@ const SESSION_KEY = "legendary_duel_id";
 export function StarterSelect() {
   const [duelId, setDuelId] = useState(1);
   const [selected, setSelected] = useState<StarterChoice | null>(null);
-  const { playSfx, unlock } = useAudio();
+  const { playSfx, playCry, unlock } = useAudio();
 
   useEffect(() => {
     const stored = sessionStorage.getItem(SESSION_KEY);
@@ -29,6 +29,7 @@ export function StarterSelect() {
   const choose = (starter: StarterChoice) => {
     unlock();
     setSelected(starter);
+    playCry(starter.name, starter.dexNo);
     playSfx(starter.sfx ?? "CLICK");
   };
 
@@ -98,7 +99,7 @@ export function StarterSelect() {
         </div>
       ) : (
         <p className="font-system text-center text-[8px] text-text-light">
-          포켓몬을 선택해 주세요
+          포켓몬을 선택하면 울음소리를 들을 수 있어요
         </p>
       )}
     </div>

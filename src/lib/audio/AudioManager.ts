@@ -1,4 +1,5 @@
 import { DEFAULT_BGM_VOLUME, DEFAULT_SFX_VOLUME } from "./constants";
+import { getPokemonCryFallbackUrl, getPokemonCryUrl } from "./pokemonCries";
 import { SFX, type SfxKey, SFX_VOLUME } from "./sfxMap";
 
 class AudioManager {
@@ -74,12 +75,21 @@ class AudioManager {
 
   playSfx(key: SfxKey): void {
     if (!this.unlocked || this.activeSfxCount >= this.maxConcurrentSfx) return;
+    this.playUrl(SFX[key], SFX_VOLUME[key] ?? DEFAULT_SFX_VOLUME);
+  }
 
-    const src = SFX[key];
+  playCry(name: string, dexNo: number): void {
+    if (!this.unlocked || this.activeSfxCount >= this.maxConcurrentSfx) return;
+    this.playUrl(getPokemonCryUrl(name, dexNo), 0.55, getPokemonCryFallbackUrl(dexNo));
+  }
+
+  private playUrl(src: string, volume = DEFAULT_SFX_VOLUME, fallbackSrc?: string): void {
+    if (!this.unlocked || this.activeSfxCount >= this.maxConcurrentSfx) return;
+
     const cached = this.sfxCache.get(src);
     const audio = cached ? (cached.cloneNode() as HTMLAudioElement) : new Audio(src);
 
-    audio.volume = SFX_VOLUME[key] ?? DEFAULT_SFX_VOLUME;
+    audio.volume = volume;
     this.activeSfxCount += 1;
 
     const cleanup = () => {
@@ -87,9 +97,19 @@ class AudioManager {
     };
 
     audio.addEventListener("ended", cleanup, { once: true });
-    audio.addEventListener("error", cleanup, { once: true });
 
-    void audio.play().catch(cleanup);
+    const tryFallback = () => {
+      if (!fallbackSrc) {
+        cleanup();
+        return;
+      }
+      this.activeSfxCount = Math.max(0, this.activeSfxCount - 1);
+      this.playUrl(fallbackSrc, volume);
+    };
+
+    audio.addEventListener("error", tryFallback, { once: true });
+
+    void audio.play().catch(tryFallback);
   }
 
   muteAll(): void {
