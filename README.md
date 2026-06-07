@@ -1,6 +1,14 @@
 # BirthDay Invitation
 
-한영욱의 생일 파티 프리미엄 디지털 초대장
+한영욱의 **아이돌 생일카페** 감성 모바일 디지털 초대장 💕
+
+> Mobile First · 390px 기준 · 카카오톡 링크 공유용
+
+## 디자인 컨셉
+
+- K-POP 생일카페 / Sanrio / 파스텔톤
+- Primary Pink `#FFB7D5` · Cream `#FFF7F2` · Sky Blue · Lavender
+- 폰트: Bagel Fat One / Gaegu / Hi Melody
 
 ## 기술 스택
 

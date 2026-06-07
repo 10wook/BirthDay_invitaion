@@ -17,29 +17,27 @@ export function MusicConsentModal({
   return (
     <Modal isOpen={isOpen} onClose={onDecline}>
       <div className="flex flex-col items-center text-center">
-        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-gold/30 bg-gold/10">
-          <Music className="text-gold" size={28} />
+        <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-secondary-pink text-3xl">
+          🎵
         </div>
-        <h2 className="font-serif text-2xl text-ivory md:text-3xl">
-          배경 음악을 재생할까요?
-        </h2>
-        <p className="mt-3 max-w-sm text-sm leading-relaxed text-warm-gray">
-          더욱 특별한 초대 경험을 위해
+        <h2 className="font-display text-xl text-text">배경 음악 틀어볼까?</h2>
+        <p className="font-body mt-2 text-base leading-relaxed text-text-light">
+          더 귀여운 분위기를 위해
           <br />
-          배경 음악과 함께 감상해 주세요.
+          음악과 함께 봐주세요 💕
         </p>
-        <div className="mt-8 flex w-full flex-col gap-3 sm:flex-row">
+        <div className="mt-6 flex w-full flex-col gap-3">
           <button
             type="button"
             onClick={onAccept}
-            className="flex-1 rounded-full bg-gold px-6 py-3 text-sm font-medium tracking-wide text-charcoal transition hover:bg-gold-light"
+            className="min-h-[48px] rounded-full bg-primary-pink px-6 py-3 font-body text-lg font-bold text-white"
           >
-            음악 켜기
+            음악 켜기 🎶
           </button>
           <button
             type="button"
             onClick={onDecline}
-            className="flex-1 rounded-full border border-warm-gray/40 px-6 py-3 text-sm tracking-wide text-warm-gray transition hover:border-gold/40 hover:text-ivory"
+            className="min-h-[44px] rounded-full border-2 border-sky-blue px-6 py-2 font-body text-base text-text-light"
           >
             괜찮아요
           </button>

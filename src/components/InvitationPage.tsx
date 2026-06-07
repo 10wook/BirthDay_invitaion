@@ -4,22 +4,18 @@ import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/sections/HeroSection";
 
 const StorySection = dynamic(
-  () =>
-    import("@/components/sections/StorySection").then((m) => m.StorySection),
+  () => import("@/components/sections/StorySection").then((m) => m.StorySection),
   { loading: () => <SectionLoader /> },
 );
 
 const GallerySection = dynamic(
   () =>
-    import("@/components/sections/GallerySection").then(
-      (m) => m.GallerySection,
-    ),
-  { loading: () => <SectionLoader />, ssr: false },
+    import("@/components/sections/GallerySection").then((m) => m.GallerySection),
+  { ssr: false, loading: () => <SectionLoader /> },
 );
 
 const VideoSection = dynamic(
-  () =>
-    import("@/components/sections/VideoSection").then((m) => m.VideoSection),
+  () => import("@/components/sections/VideoSection").then((m) => m.VideoSection),
   { loading: () => <SectionLoader /> },
 );
 
@@ -36,7 +32,7 @@ const CountdownSection = dynamic(
     import("@/components/sections/CountdownSection").then(
       (m) => m.CountdownSection,
     ),
-  { loading: () => <SectionLoader />, ssr: false },
+  { ssr: false, loading: () => <SectionLoader /> },
 );
 
 const LocationSection = dynamic(
@@ -48,8 +44,7 @@ const LocationSection = dynamic(
 );
 
 const RsvpSection = dynamic(
-  () =>
-    import("@/components/sections/RsvpSection").then((m) => m.RsvpSection),
+  () => import("@/components/sections/RsvpSection").then((m) => m.RsvpSection),
   { loading: () => <SectionLoader /> },
 );
 
@@ -62,12 +57,12 @@ const ClosingSection = dynamic(
 );
 
 function SectionLoader() {
-  return <div className="min-h-[50vh]" />;
+  return <div className="min-h-[40vh]" />;
 }
 
 export function InvitationPage() {
   return (
-    <main className="relative">
+    <main className="relative z-[2] mx-auto max-w-[430px] md:max-w-2xl">
       <HeroSection />
       <StorySection />
       <GallerySection />

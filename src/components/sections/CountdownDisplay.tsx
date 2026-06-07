@@ -9,10 +9,10 @@ import { siteConfig } from "@/config/site";
 import { padZero } from "@/lib/utils";
 
 const units = [
-  { key: "days", label: "Days" },
-  { key: "hours", label: "Hours" },
-  { key: "minutes", label: "Minutes" },
-  { key: "seconds", label: "Seconds" },
+  { key: "days", label: "Days", emoji: "📅" },
+  { key: "hours", label: "Hours", emoji: "⏰" },
+  { key: "minutes", label: "Min", emoji: "✨" },
+  { key: "seconds", label: "Sec", emoji: "💕" },
 ] as const;
 
 export function CountdownDisplay() {
@@ -30,11 +30,12 @@ export function CountdownDisplay() {
 
     const ctx = gsap.context(() => {
       gsap.from(grid.querySelectorAll("[data-countdown-item]"), {
-        y: 40,
+        y: 30,
         opacity: 0,
-        stagger: 0.1,
-        duration: 0.8,
-        ease: "power3.out",
+        scale: 0.95,
+        stagger: 0.08,
+        duration: 0.7,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: grid,
           start: "top 85%",
@@ -48,38 +49,34 @@ export function CountdownDisplay() {
 
   if (isPast) {
     return (
-      <p className="text-center font-serif text-2xl text-gold">
-        오늘은 특별한 날입니다!
+      <p className="font-accent text-center text-2xl text-primary-pink">
+        오늘이 바로 그 날이에요! 🎂
       </p>
     );
   }
 
   return (
-    <div
-      ref={gridRef}
-      className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8"
-    >
-      {units.map(({ key, label }) => (
+    <div ref={gridRef} className="grid grid-cols-2 gap-4">
+      {units.map(({ key, label, emoji }) => (
         <div
           key={key}
           data-countdown-item
-          className="flex flex-col items-center rounded-sm border border-gold/20 bg-charcoal/40 px-4 py-8 backdrop-blur-sm"
+          className="cute-card flex flex-col items-center py-6"
         >
+          <span className="mb-1 text-lg">{emoji}</span>
           <AnimatePresence mode="popLayout">
             <motion.span
               key={values[key]}
-              initial={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.3 }}
-              className="font-serif text-5xl text-ivory md:text-6xl lg:text-7xl"
+              exit={{ opacity: 0, y: 8 }}
+              transition={{ duration: 0.25 }}
+              className="font-display text-4xl text-text"
             >
               {padZero(values[key])}
             </motion.span>
           </AnimatePresence>
-          <span className="mt-3 text-xs uppercase tracking-[0.25em] text-gold">
-            {label}
-          </span>
+          <span className="font-body mt-2 text-sm text-text-light">{label}</span>
         </div>
       ))}
     </div>
@@ -88,18 +85,14 @@ export function CountdownDisplay() {
 
 export function CountdownSkeleton() {
   return (
-    <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-8">
+    <div className="grid grid-cols-2 gap-4">
       {units.map(({ key, label }) => (
         <div
           key={key}
-          className="flex flex-col items-center rounded-sm border border-gold/20 bg-charcoal/40 px-4 py-8 backdrop-blur-sm"
+          className="cute-card flex flex-col items-center py-6"
         >
-          <span className="font-serif text-5xl text-ivory/30 md:text-6xl lg:text-7xl">
-            --
-          </span>
-          <span className="mt-3 text-xs uppercase tracking-[0.25em] text-gold">
-            {label}
-          </span>
+          <span className="font-display text-4xl text-text/20">--</span>
+          <span className="font-body mt-2 text-sm text-text-light">{label}</span>
         </div>
       ))}
     </div>

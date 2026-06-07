@@ -28,6 +28,7 @@ export const siteConfig: SiteConfig = {
     "NEXT_PUBLIC_RSVP_DECLINE_URL",
     "https://forms.google.com/",
   ),
+  profileImageSrc: env("NEXT_PUBLIC_PROFILE_IMAGE", "/images/hero/profile.jpg"),
 };
 
 export function getSiteUrl(): string {

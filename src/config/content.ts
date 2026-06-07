@@ -3,21 +3,21 @@ import type { GalleryImage, StoryItem, TimelineEntry } from "@/types";
 export const storyItems: StoryItem[] = [
   {
     id: "story-1",
-    text: "함께했던 추억",
+    text: "함께해서 즐거웠어",
     image: "/images/story/01.jpg",
-    imageAlt: "함께했던 추억",
+    imageAlt: "함께해서 즐거웠어",
   },
   {
     id: "story-2",
-    text: "웃음 가득했던 그날들",
+    text: "올해도 고마워",
     image: "/images/story/02.jpg",
-    imageAlt: "웃음 가득했던 그날들",
+    imageAlt: "올해도 고마워",
   },
   {
     id: "story-3",
-    text: "올해도 함께해줘서 고마워",
+    text: "이번 생일도 같이 보내자",
     image: "/images/story/03.jpg",
-    imageAlt: "올해도 함께해줘서 고마워",
+    imageAlt: "이번 생일도 같이 보내자",
   },
 ];
 
@@ -33,21 +33,21 @@ export const timelineEntries: TimelineEntry[] = [
   {
     year: "2024",
     title: "첫 만남",
-    description: "우연히 시작된 인연이 특별한 추억이 되었어요.",
+    description: "우연히 시작된 인연이 특별한 추억이 되었어요 💕",
     image: "/images/timeline/2024.jpg",
   },
   {
     year: "2025",
     title: "함께한 시간",
-    description: "많은 순간들을 나누며 더 깊은 우정을 쌓았어요.",
+    description: "많은 순간들을 나누며 더 깊은 우정을 쌓았어요 ✨",
     image: "/images/timeline/2025.jpg",
   },
   {
     year: "2026",
     title: "새로운 시작",
-    description: "올해 생일, 소중한 분들과 함께하고 싶어요.",
+    description: "올해 생일, 소중한 분들과 함께하고 싶어요 🎂",
     image: "/images/timeline/2026.jpg",
   },
 ];
 
-export const closingMessage = "함께 해주셔서 감사합니다";
+export const closingMessage = "와주셔서 고마워요 💕";

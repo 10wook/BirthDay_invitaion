@@ -2,17 +2,16 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "@/lib/gsap";
+import Image from "next/image";
 import { registerGsapPlugins } from "@/lib/gsap";
 import { siteConfig } from "@/config/site";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
-import { MapPin, Calendar } from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoFailed, setVideoFailed] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     registerGsapPlugins();
@@ -21,19 +20,18 @@ export function HeroSection() {
     if (!section || !content) return;
 
     const ctx = gsap.context(() => {
-      const lines = content.querySelectorAll("[data-hero-line]");
-
-      gsap.from(lines, {
-        y: 80,
+      gsap.from(content.querySelectorAll("[data-hero-line]"), {
+        y: 40,
         opacity: 0,
-        duration: 1.2,
-        stagger: 0.15,
-        ease: "power3.out",
-        delay: 0.3,
+        scale: 0.95,
+        duration: 0.9,
+        stagger: 0.12,
+        ease: "power2.out",
+        delay: 0.2,
       });
 
       gsap.to(content, {
-        y: -80,
+        y: -40,
         opacity: 0,
         ease: "none",
         scrollTrigger: {
@@ -43,88 +41,88 @@ export function HeroSection() {
           scrub: 1,
         },
       });
-
-      if (videoRef.current && !videoFailed) {
-        gsap.to(videoRef.current, {
-          y: 120,
-          scale: 1.1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top top",
-            end: "bottom top",
-            scrub: 1,
-          },
-        });
-      }
     }, section);
 
     return () => ctx.revert();
-  }, [videoFailed]);
+  }, []);
 
   return (
     <section
       ref={sectionRef}
       id="hero"
-      className="relative flex h-screen min-h-[600px] items-center justify-center overflow-hidden"
+      className="hero-pastel-bg relative z-[2] flex h-[100dvh] min-h-[640px] items-center justify-center overflow-hidden"
     >
-      {/* Background */}
-      <div className="absolute inset-0 z-0">
-        {!videoFailed ? (
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="h-full w-full object-cover"
-            onError={() => setVideoFailed(true)}
-          >
-            <source src={siteConfig.heroVideoSrc} type="video/mp4" />
-          </video>
-        ) : (
-          <div className="hero-gradient h-full w-full" />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/30 to-charcoal/80" />
-      </div>
+      {/* 장식 */}
+      <span className="absolute left-[6%] top-[8%] text-3xl opacity-70 animate-float">
+        🎈
+      </span>
+      <span className="absolute right-[8%] top-[10%] text-2xl opacity-70 animate-heart">
+        💕
+      </span>
+      <span className="absolute left-[10%] bottom-[20%] text-xl opacity-60 animate-sparkle">
+        ✨
+      </span>
+      <span className="absolute right-[6%] bottom-[25%] text-2xl opacity-60 animate-cloud">
+        ☁️
+      </span>
 
-      {/* Content */}
       <div
         ref={contentRef}
-        className="relative z-10 flex flex-col items-center px-6 text-center"
+        className="relative z-10 flex w-full max-w-[430px] flex-col items-center px-5 text-center"
       >
-        <p
+        {/* 프로필 */}
+        <div
           data-hero-line
-          className="mb-4 text-xs uppercase tracking-[0.4em] text-gold"
+          className="relative mb-5 h-32 w-32 overflow-hidden rounded-full border-4 border-white shadow-[0_8px_24px_rgba(255,183,213,0.5)]"
         >
-          You&apos;re Invited
+          {!imgError ? (
+            <Image
+              src={siteConfig.profileImageSrc}
+              alt={siteConfig.hostName}
+              fill
+              className="object-cover"
+              priority
+              sizes="128px"
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center bg-secondary-pink text-4xl">
+              🎂
+            </div>
+          )}
+          <span className="absolute -right-1 -top-1 text-lg">🎀</span>
+        </div>
+
+        <p data-hero-line className="font-accent text-lg text-primary-pink">
+          HAPPY BIRTHDAY
         </p>
+
         <h1
           data-hero-line
-          className="font-serif text-5xl leading-none text-ivory md:text-7xl lg:text-8xl"
+          className="font-display mt-1 text-[32px] leading-tight text-text"
         >
           {siteConfig.hostName}
         </h1>
+
         <p
           data-hero-line
-          className="mt-4 font-serif text-2xl italic text-gold-light md:text-3xl"
+          className="font-accent mt-2 text-xl text-text-light"
         >
-          {siteConfig.partyTitle}
+          {siteConfig.partyTitle} 🎉
         </p>
 
         <div
           data-hero-line
-          className="mt-10 flex flex-col items-center gap-3 text-sm text-ivory/80 md:flex-row md:gap-8"
+          className="cute-card mt-6 w-full px-5 py-4 text-left"
         >
-          <span className="flex items-center gap-2">
-            <Calendar size={16} className="text-gold" />
+          <p className="flex items-center gap-2 font-body text-base text-text">
+            <Calendar size={16} className="shrink-0 text-primary-pink" />
             {siteConfig.eventDateDisplay} · {siteConfig.eventTime}
-          </span>
-          <span className="hidden h-4 w-px bg-ivory/20 md:block" />
-          <span className="flex items-center gap-2">
-            <MapPin size={16} className="text-gold" />
+          </p>
+          <p className="mt-2 flex items-center gap-2 font-body text-base text-text">
+            <MapPin size={16} className="shrink-0 text-primary-pink" />
             {siteConfig.venue}
-          </span>
+          </p>
         </div>
       </div>
 

@@ -17,33 +17,30 @@ export function StorySection() {
     if (!section) return;
 
     const ctx = gsap.context(() => {
-      const items = section.querySelectorAll("[data-story-item]");
-
-      items.forEach((item) => {
+      section.querySelectorAll("[data-story-item]").forEach((item) => {
         const text = item.querySelector("[data-story-text]");
         const image = item.querySelector("[data-story-image]");
 
         gsap.from(text, {
-          y: 60,
+          y: 40,
           opacity: 0,
-          duration: 1,
-          ease: "power3.out",
+          duration: 0.8,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: item,
-            start: "top 80%",
+            start: "top 85%",
             toggleActions: "play none none reverse",
           },
         });
 
         gsap.from(image, {
-          scale: 1.15,
+          scale: 0.9,
           opacity: 0,
-          clipPath: "inset(100% 0 0 0)",
-          duration: 1.2,
-          ease: "power3.out",
+          duration: 0.9,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: item,
-            start: "top 75%",
+            start: "top 80%",
             toggleActions: "play none none reverse",
           },
         });
@@ -54,37 +51,29 @@ export function StorySection() {
   }, []);
 
   return (
-    <SectionWrapper id="story" className="bg-cream/5">
+    <SectionWrapper id="story">
       <section ref={sectionRef}>
-        <SectionTitle subtitle="Our Story" title="함께한 이야기" />
+        <SectionTitle subtitle="💌 Our Story" title="우리의 이야기" />
 
-        <div className="flex flex-col gap-24 md:gap-32">
-          {storyItems.map((item, index) => (
-            <div
-              key={item.id}
-              data-story-item
-              className={`flex flex-col items-center gap-10 md:gap-16 ${
-                index % 2 === 1 ? "md:flex-row-reverse" : "md:flex-row"
-              }`}
-            >
-              <div
+        <div className="flex flex-col gap-12">
+          {storyItems.map((item) => (
+            <div key={item.id} data-story-item className="flex flex-col gap-5">
+              <p
                 data-story-text
-                className="flex-1 text-center md:text-left"
+                className="font-accent text-center text-[22px] leading-snug text-text"
               >
-                <p className="font-serif text-3xl leading-snug text-ivory md:text-4xl lg:text-5xl">
-                  {item.text}
-                </p>
-              </div>
+                {item.text}
+              </p>
               <div
                 data-story-image
-                className="relative aspect-[4/5] w-full max-w-md overflow-hidden rounded-sm"
+                className="relative mx-auto aspect-[4/5] w-full max-w-[320px] overflow-hidden rounded-3xl border-2 border-secondary-pink shadow-[0_8px_24px_rgba(255,183,213,0.3)]"
               >
                 <Image
                   src={item.image}
                   alt={item.imageAlt}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 400px"
+                  sizes="(max-width: 430px) 90vw, 320px"
                   loading="lazy"
                 />
               </div>

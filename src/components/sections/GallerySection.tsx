@@ -4,14 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
+import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 import { registerGsapPlugins } from "@/lib/gsap";
 import { galleryImages } from "@/config/content";
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
 export function GallerySection() {
@@ -29,14 +28,14 @@ export function GallerySection() {
     if (!section) return;
 
     const ctx = gsap.context(() => {
-      gsap.from(section.querySelector("[data-gallery-swiper]"), {
-        y: 60,
+      gsap.from("[data-gallery-swiper]", {
+        y: 30,
         opacity: 0,
-        duration: 1,
-        ease: "power3.out",
+        duration: 0.8,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: section,
-          start: "top 75%",
+          start: "top 80%",
           toggleActions: "play none none reverse",
         },
       });
@@ -48,43 +47,35 @@ export function GallerySection() {
   return (
     <SectionWrapper id="gallery">
       <section ref={sectionRef}>
-        <SectionTitle subtitle="Memories" title="추억 갤러리" />
+        <SectionTitle subtitle="📸 Memories" title="추억 갤러리" />
 
-        <div data-gallery-swiper className="relative px-2 md:px-8">
+        <div data-gallery-swiper>
           {!mounted ? (
-            <div className="flex h-[400px] items-center justify-center text-warm-gray">
-              ...
-            </div>
+            <div className="aspect-[4/5] animate-pulse rounded-3xl bg-secondary-pink/40" />
           ) : (
             <Swiper
-              modules={[Autoplay, Pagination, Navigation, EffectFade]}
-              slidesPerView={1.2}
-              spaceBetween={20}
+              modules={[Autoplay, Pagination, EffectFade]}
+              slidesPerView={1.15}
+              spaceBetween={16}
               centeredSlides
               loop
-              autoplay={{ delay: 4000, disableOnInteraction: false }}
+              autoplay={{ delay: 3500, disableOnInteraction: false }}
               pagination={{ clickable: true }}
-              navigation
               effect="fade"
               fadeEffect={{ crossFade: true }}
-              breakpoints={{
-                768: { slidesPerView: 2.2, spaceBetween: 30 },
-                1024: { slidesPerView: 2.5, spaceBetween: 40 },
-              }}
-              className="gallery-swiper !pb-14"
+              className="gallery-swiper !pb-10"
             >
               {galleryImages.map((image) => (
                 <SwiperSlide key={image.src}>
-                  <div className="group relative aspect-[3/4] overflow-hidden rounded-sm transition-transform duration-500 hover:scale-[1.02]">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-3xl border-2 border-white shadow-[0_8px_24px_rgba(255,183,213,0.35)]">
                     <Image
                       src={image.src}
                       alt={image.alt}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 80vw, 400px"
+                      className="object-cover"
+                      sizes="(max-width: 430px) 85vw, 360px"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-charcoal/0 transition-colors duration-500 group-hover:bg-charcoal/10" />
                   </div>
                 </SwiperSlide>
               ))}

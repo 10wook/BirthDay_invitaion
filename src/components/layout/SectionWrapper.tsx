@@ -17,12 +17,12 @@ export function SectionWrapper({
     <section
       id={id}
       className={cn(
-        "relative w-full px-6 py-24 md:px-12 md:py-32",
+        "relative z-[2] w-full px-5 py-16 md:px-8 md:py-24",
         fullHeight && "min-h-screen",
         className,
       )}
     >
-      <div className="mx-auto w-full max-w-6xl">{children}</div>
+      <div className="mx-auto w-full max-w-[430px] md:max-w-2xl">{children}</div>
     </section>
   );
 }

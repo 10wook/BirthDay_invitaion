@@ -7,18 +7,17 @@ import { SectionTitle } from "@/components/ui/SectionTitle";
 import { CountdownSkeleton } from "./CountdownDisplay";
 
 const CountdownDisplay = dynamic(
-  () =>
-    import("./CountdownDisplay").then((mod) => mod.CountdownDisplay),
+  () => import("./CountdownDisplay").then((mod) => mod.CountdownDisplay),
   { ssr: false, loading: () => <CountdownSkeleton /> },
 );
 
 export function CountdownSection() {
   return (
-    <SectionWrapper id="countdown" className="bg-cream/5">
+    <SectionWrapper id="countdown">
       <section>
-        <SectionTitle subtitle="Countdown" title="D-Day" />
+        <SectionTitle subtitle="⏳ D-Day" title="생일까지" />
         <CountdownDisplay />
-        <p className="mt-10 text-center text-sm text-warm-gray">
+        <p className="font-body mt-8 text-center text-base text-text-light">
           {siteConfig.eventDateDisplay} · {siteConfig.eventTime}
         </p>
       </section>
