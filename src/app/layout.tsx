@@ -23,6 +23,10 @@ export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
   title: `Trainer ${trainerConfig.name} — Pokédex Entry`,
   description: `Trainer No.${trainerConfig.trainerNo} ${trainerConfig.nameKo}의 Birthday Adventure`,
+  icons: {
+    icon: "/icons/pokeball.svg",
+    apple: "/icons/pokeball.svg",
+  },
   openGraph: {
     title: `Trainer ${trainerConfig.name} — Birthday Adventure`,
     description: "Press Start to join the adventure!",

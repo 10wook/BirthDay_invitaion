@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { trainerConfig } from "@/config/trainer";
 import { PokedexLoadingScreen } from "@/components/sections/PokedexLoadingScreen";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { SiteHeader } from "@/components/layout/SiteHeader";
 import { PokeballDecorations } from "@/components/decorations/PokeballDecorations";
 import { LegendaryDuelBackground } from "@/components/decorations/LegendaryDuelBackground";
 
@@ -56,7 +57,9 @@ export function InvitationPage() {
       <PokeballDecorations />
       {loading && <PokedexLoadingScreen onComplete={() => setLoading(false)} />}
       {!loading && (
-        <main className="relative z-[2] mx-auto max-w-[430px]">
+        <>
+          <SiteHeader />
+          <main className="relative z-[2] mx-auto max-w-[430px] pt-11">
           <HeroSection />
           <TrainerProfileSection />
           <MemoryBadgesSection />
@@ -69,6 +72,7 @@ export function InvitationPage() {
           <JoinAdventureSection />
           <EndingSection />
         </main>
+        </>
       )}
     </>
   );

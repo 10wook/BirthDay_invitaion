@@ -9,7 +9,7 @@ import pokemonData from "@/data/pokemon.json";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
 import { Button } from "@/components/ui/Button";
 import { GameTextBox } from "@/components/ui/GameTextBox";
-import { PokemonSprite } from "@/components/ui/PokemonSprite";
+import { CryPokemonSprite } from "@/components/ui/CryPokemonSprite";
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -85,7 +85,7 @@ export function HeroSection() {
           </div>
           <div className="mt-2 flex flex-wrap items-end justify-center gap-1">
             {pokemonData.party.map((p) => (
-              <PokemonSprite key={p.id} dexNo={p.dexNo} name={p.name} size="xs" />
+              <CryPokemonSprite key={p.id} dexNo={p.dexNo} name={p.name} cryName={p.name} size="xs" />
             ))}
           </div>
         </div>

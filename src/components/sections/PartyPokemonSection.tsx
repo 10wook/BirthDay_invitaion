@@ -14,7 +14,7 @@ import { PokemonCard } from "@/components/ui/PokemonCard";
 export function PartyPokemonSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [activePokemon, setActivePokemon] = useState<PokemonEntry | null>(null);
-  const { playSfx } = useAudio();
+  const { playSfx, playCry, unlock } = useAudio();
 
   useEffect(() => {
     registerGsapPlugins();
@@ -33,6 +33,8 @@ export function PartyPokemonSection() {
   }, []);
 
   const handleCardClick = (pokemon: PokemonEntry) => {
+    unlock();
+    playCry(pokemon.name, pokemon.dexNo);
     playSfx("POKEDEX_OPEN");
     setActivePokemon(pokemon);
   };
@@ -51,7 +53,7 @@ export function PartyPokemonSection() {
           ))}
         </div>
         <p className="font-system mt-3 text-center text-text-light">
-          Tap a Pokémon to open Pokédex entry
+          Tap a Pokémon to hear its cry & open Pokédex
         </p>
       </section>
       <PokemonDetailModal pokemon={activePokemon} onClose={() => setActivePokemon(null)} />

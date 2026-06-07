@@ -24,6 +24,7 @@ interface AudioContextValue {
   toggleBgm: () => void;
   setBgmVolume: (v: number) => void;
   playSfx: (key: SfxKey) => void;
+  playCry: (name: string, dexNo: number) => void;
   unlock: () => void;
   setConsented: (accepted: boolean) => void;
 }
@@ -103,6 +104,15 @@ export function AudioProvider({ children }: AudioProviderProps) {
     [sfxEnabled],
   );
 
+  const playCry = useCallback(
+    (name: string, dexNo: number) => {
+      if (!sfxEnabled) return;
+      audioManager.unlock();
+      audioManager.playCry(name, dexNo);
+    },
+    [sfxEnabled],
+  );
+
   const setConsented = useCallback(
     (accepted: boolean) => {
       setHasConsentedState(true);
@@ -128,6 +138,7 @@ export function AudioProvider({ children }: AudioProviderProps) {
       toggleBgm,
       setBgmVolume,
       playSfx,
+      playCry,
       unlock,
       setConsented,
     }),
@@ -142,6 +153,7 @@ export function AudioProvider({ children }: AudioProviderProps) {
       toggleBgm,
       setBgmVolume,
       playSfx,
+      playCry,
       unlock,
       setConsented,
     ],
