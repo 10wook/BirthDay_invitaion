@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useLenis } from "@/hooks/useLenis";
-import { useBackgroundMusic } from "@/hooks/useBackgroundMusic";
-import { siteConfig } from "@/config/site";
+import { AudioProvider } from "@/components/audio/AudioProvider";
+import { useAudio } from "@/components/audio/useAudio";
 import { FloatingMusicButton } from "./FloatingMusicButton";
 import { MusicConsentModal } from "./MusicConsentModal";
 
@@ -11,42 +11,61 @@ interface SmoothScrollProviderProps {
   children: React.ReactNode;
 }
 
-export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
+function AudioUI({ children }: { children: React.ReactNode }) {
   useLenis();
-  const { isPlaying, isReady, play, pause, toggle } = useBackgroundMusic(
-    siteConfig.musicSrc,
-  );
+  const {
+    isPlaying,
+    isReady,
+    bgmVolume,
+    hasConsented,
+    toggleBgm,
+    setBgmVolume,
+    setConsented,
+  } = useAudio();
   const [showModal, setShowModal] = useState(false);
-  const [hasDecided, setHasDecided] = useState(false);
 
   useEffect(() => {
+    if (hasConsented) return;
+    const consent = sessionStorage.getItem("audio_consent");
+    if (consent) return;
     const timer = setTimeout(() => setShowModal(true), 800);
     return () => clearTimeout(timer);
-  }, []);
+  }, [hasConsented]);
 
   const handleAccept = () => {
     setShowModal(false);
-    setHasDecided(true);
-    if (isReady) void play();
+    setConsented(true);
   };
 
   const handleDecline = () => {
     setShowModal(false);
-    setHasDecided(true);
-    pause();
+    setConsented(false);
   };
 
   return (
     <>
       {children}
-      {hasDecided && isReady && (
-        <FloatingMusicButton isPlaying={isPlaying} onToggle={toggle} />
+      {hasConsented && isReady && (
+        <FloatingMusicButton
+          isPlaying={isPlaying}
+          volume={bgmVolume}
+          onToggle={toggleBgm}
+          onVolumeChange={setBgmVolume}
+        />
       )}
       <MusicConsentModal
-        isOpen={showModal && !hasDecided}
+        isOpen={showModal && !hasConsented}
         onAccept={handleAccept}
         onDecline={handleDecline}
       />
     </>
+  );
+}
+
+export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
+  return (
+    <AudioProvider>
+      <AudioUI>{children}</AudioUI>
+    </AudioProvider>
   );
 }

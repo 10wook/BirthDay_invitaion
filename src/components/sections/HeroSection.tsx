@@ -1,18 +1,20 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "@/lib/gsap";
 import { registerGsapPlugins } from "@/lib/gsap";
-import { siteConfig } from "@/config/site";
+import { useAudio } from "@/components/audio/useAudio";
+import { trainerConfig } from "@/config/trainer";
+import pokemonData from "@/data/pokemon.json";
+import { FloatingClouds } from "@/components/decorations/FloatingClouds";
+import { SparkleField } from "@/components/decorations/SparkleField";
 import { ScrollIndicator } from "@/components/ui/ScrollIndicator";
-import { MapPin, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoFailed, setVideoFailed] = useState(false);
+  const { playSfx } = useAudio();
 
   useEffect(() => {
     registerGsapPlugins();
@@ -21,113 +23,66 @@ export function HeroSection() {
     if (!section || !content) return;
 
     const ctx = gsap.context(() => {
-      const lines = content.querySelectorAll("[data-hero-line]");
-
-      gsap.from(lines, {
-        y: 80,
+      gsap.from(content.querySelectorAll("[data-hero]"), {
+        y: 30,
         opacity: 0,
-        duration: 1.2,
-        stagger: 0.15,
-        ease: "power3.out",
-        delay: 0.3,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: "power2.out",
+        delay: 0.2,
       });
-
-      gsap.to(content, {
-        y: -80,
-        opacity: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          start: "top top",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
-
-      if (videoRef.current && !videoFailed) {
-        gsap.to(videoRef.current, {
-          y: 120,
-          scale: 1.1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top top",
-            end: "bottom top",
-            scrub: 1,
-          },
-        });
-      }
     }, section);
-
     return () => ctx.revert();
-  }, [videoFailed]);
+  }, []);
+
+  const scrollTo = (id: string, sfx: "START" | "PARTY_OPEN") => {
+    playSfx(sfx);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section
       ref={sectionRef}
       id="hero"
-      className="relative flex h-screen min-h-[600px] items-center justify-center overflow-hidden"
+      className="relative z-[2] flex h-[100dvh] min-h-[640px] flex-col items-center justify-center px-4"
     >
-      {/* Background */}
-      <div className="absolute inset-0 z-0">
-        {!videoFailed ? (
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="h-full w-full object-cover"
-            onError={() => setVideoFailed(true)}
-          >
-            <source src={siteConfig.heroVideoSrc} type="video/mp4" />
-          </video>
-        ) : (
-          <div className="hero-gradient h-full w-full" />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/50 via-charcoal/30 to-charcoal/80" />
-      </div>
-
-      {/* Content */}
-      <div
-        ref={contentRef}
-        className="relative z-10 flex flex-col items-center px-6 text-center"
-      >
-        <p
-          data-hero-line
-          className="mb-4 text-xs uppercase tracking-[0.4em] text-gold"
-        >
-          You&apos;re Invited
+      <FloatingClouds />
+      <SparkleField />
+      <div ref={contentRef} className="dex-screen relative mx-auto w-full max-w-[430px] p-6 text-center">
+        <p data-hero className="font-system text-poke-red">
+          POKÉDEX ENTRY
         </p>
-        <h1
-          data-hero-line
-          className="font-serif text-5xl leading-none text-ivory md:text-7xl lg:text-8xl"
-        >
-          {siteConfig.hostName}
+        <p data-hero className="font-system mt-2 text-text-light">
+          No.{trainerConfig.trainerNo}
+        </p>
+        <h1 data-hero className="font-display mt-3 text-3xl leading-tight text-text">
+          {trainerConfig.name.toUpperCase()}
         </h1>
-        <p
-          data-hero-line
-          className="mt-4 font-serif text-2xl italic text-gold-light md:text-3xl"
-        >
-          {siteConfig.partyTitle}
+        <p data-hero className="mt-2 text-lg font-bold text-text">
+          Birthday Adventure
         </p>
-
-        <div
-          data-hero-line
-          className="mt-10 flex flex-col items-center gap-3 text-sm text-ivory/80 md:flex-row md:gap-8"
-        >
-          <span className="flex items-center gap-2">
-            <Calendar size={16} className="text-gold" />
-            {siteConfig.eventDateDisplay} · {siteConfig.eventTime}
-          </span>
-          <span className="hidden h-4 w-px bg-ivory/20 md:block" />
-          <span className="flex items-center gap-2">
-            <MapPin size={16} className="text-gold" />
-            {siteConfig.venue}
-          </span>
+        <p data-hero className="mt-1 text-base text-text-light">
+          {trainerConfig.birthday}
+        </p>
+        <div data-hero className="mt-8">
+          <Button variant="primary" size="lg" sfx="START" onClick={() => scrollTo("trainer-profile", "START")}>
+            ▶ PRESS START
+          </Button>
+        </div>
+        <div data-hero className="mt-8 border-t-2 border-dex-border/30 pt-6">
+          <p className="font-system text-text-light">CURRENT PARTY</p>
+          <p className="mt-2 text-2xl tracking-widest">
+            {pokemonData.party.map((p) => p.emoji).join(" ")}
+          </p>
+          <button
+            type="button"
+            onClick={() => scrollTo("party", "PARTY_OPEN")}
+            className="mt-3 text-sm font-bold text-poke-red underline-offset-2 hover:underline"
+          >
+            View Party →
+          </button>
         </div>
       </div>
-
       <ScrollIndicator />
     </section>
   );

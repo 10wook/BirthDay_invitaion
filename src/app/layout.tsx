@@ -1,43 +1,54 @@
-import type { Metadata } from "next";
-import { Cormorant_Garamond, Noto_Sans_KR } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Fredoka, Press_Start_2P } from "next/font/google";
 import { SmoothScrollProvider } from "@/components/layout/SmoothScrollProvider";
 import { getSiteUrl, siteConfig } from "@/config/site";
+import { trainerConfig } from "@/config/trainer";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const fredoka = Fredoka({
+  variable: "--font-fredoka",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
-const notoSans = Noto_Sans_KR({
-  variable: "--font-noto-sans",
+const pressStart = Press_Start_2P({
+  variable: "--font-press-start",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  weight: ["400"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(getSiteUrl()),
-  title: `${siteConfig.hostName}의 ${siteConfig.partyTitle}`,
-  description: `${siteConfig.hostName}의 생일 파티에 초대합니다. ${siteConfig.eventDateDisplay}`,
+  title: `Trainer ${trainerConfig.name} — Pokédex Entry`,
+  description: `Trainer No.${trainerConfig.trainerNo} ${trainerConfig.nameKo}의 Birthday Adventure`,
   openGraph: {
-    title: `${siteConfig.hostName}의 ${siteConfig.partyTitle}`,
-    description: "특별한 날, 함께해 주세요.",
+    title: `Trainer ${trainerConfig.name} — Birthday Adventure`,
+    description: "Press Start to join the adventure!",
     type: "website",
     locale: "ko_KR",
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#FFE37A",
+};
+
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ko" className={`${cormorant.variable} ${notoSans.variable}`}>
-      <body className="noise-overlay min-h-screen bg-charcoal text-ivory antialiased">
+    <html lang="ko" className={`${fredoka.variable} ${pressStart.variable}`}>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+        />
+      </head>
+      <body className="min-h-screen antialiased">
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
       </body>
     </html>

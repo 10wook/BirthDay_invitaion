@@ -1,0 +1,82 @@
+{
+  "party": [
+    {
+      "id": "lapras",
+      "emoji": "🌊",
+      "name": "Lapras",
+      "level": 30,
+      "types": ["Water", "Ice"],
+      "keywords": ["Journey", "Adventure", "Companion"],
+      "hp": 95,
+      "image": "/images/gallery/01.jpg",
+      "description": "바다를 가로지르는 여정의 동반자. 넓은 등 위에서 함께 모험을 떠난 기억.",
+      "whyChosen": "멀리 떠나는 모험과 끝없는 여정을 상징합니다.",
+      "story": "처음 만났을 때부터 든든한 파트너였습니다. 어디든 함께 갈 수 있다는 믿음."
+    },
+    {
+      "id": "victini",
+      "emoji": "🎉",
+      "name": "Victini",
+      "level": 30,
+      "types": ["Psychic", "Fire"],
+      "keywords": ["Victory", "Luck", "Birthday"],
+      "hp": 88,
+      "image": "/images/gallery/02.jpg",
+      "description": "승리를 가져다주는 전설의 포켓몬. 생일 모험의 행운을 담았습니다.",
+      "whyChosen": "생일과 승리, 행운의 에너지를 대표합니다.",
+      "story": "V자를 그리며 앞으로 나아가는 모든 순간에 함께하고 싶어 선택했습니다."
+    },
+    {
+      "id": "quilava",
+      "emoji": "🔥",
+      "name": "Quilava",
+      "level": 30,
+      "types": ["Fire"],
+      "keywords": ["Growth", "Passion", "Challenge"],
+      "hp": 82,
+      "image": "/images/gallery/03.jpg",
+      "description": "타오르는 열정으로 성장하는 불꽃 타입. 도전을 두려워하지 않습니다.",
+      "whyChosen": "끊임없이 성장하고 도전하는 트레이너의 마음.",
+      "story": "작은 불꽃이 큰 불꽃이 되듯, 매일 조금씩 레벨업하는 중입니다."
+    },
+    {
+      "id": "umbreon",
+      "emoji": "🌙",
+      "name": "Umbreon",
+      "level": 30,
+      "types": ["Dark"],
+      "keywords": ["Patience", "Loyalty", "Focus"],
+      "hp": 90,
+      "image": "/images/gallery/04.jpg",
+      "description": "달빛 아래에서도 흔들리지 않는 집중력과 충성심.",
+      "whyChosen": "깊은 밤에도 포기하지 않는 집중력을 닮고 싶어서.",
+      "story": "조용하지만 가장 믿을 수 있는 파트너. 어려운 연구의 밤에도 함께합니다."
+    },
+    {
+      "id": "ditto",
+      "emoji": "🧬",
+      "name": "Ditto",
+      "level": 30,
+      "types": ["Normal"],
+      "keywords": ["Adaptability", "Curiosity", "Possibility"],
+      "hp": 78,
+      "image": "/images/gallery/05.jpg",
+      "description": "무엇이든 될 수 있는 가능성. AI 트레이너의 적응력을 상징.",
+      "whyChosen": "새로운 기술과 환경에 빠르게 적응하는 모습.",
+      "story": "RAG, SRNet, AI 프로젝트… 매번 다른 형태로 진화하는 여정."
+    },
+    {
+      "id": "zapdos",
+      "emoji": "⚡",
+      "name": "Zapdos",
+      "level": 30,
+      "types": ["Electric", "Flying"],
+      "keywords": ["Power", "Impact", "Confidence"],
+      "hp": 92,
+      "image": "/images/hero/profile.jpg",
+      "description": "번개처럼 강렬한 임팩트. 자신감 넘치는 마무리.",
+      "whyChosen": "파티의 마지막 한 방. 레벨업을 향한 강한 추진력.",
+      "story": "가장 강력한 순간을 만들어내는 파트너. Lv.27을 향해!"
+    }
+  ]
+}

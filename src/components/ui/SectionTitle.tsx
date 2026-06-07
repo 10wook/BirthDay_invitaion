@@ -3,39 +3,19 @@ import { cn } from "@/lib/utils";
 interface SectionTitleProps {
   subtitle?: string;
   title: string;
-  align?: "left" | "center";
   className?: string;
 }
 
-export function SectionTitle({
-  subtitle,
-  title,
-  align = "center",
-  className,
-}: SectionTitleProps) {
+export function SectionTitle({ subtitle, title, className }: SectionTitleProps) {
   return (
-    <div
-      className={cn(
-        "mb-16",
-        align === "center" && "text-center",
-        align === "left" && "text-left",
-        className,
-      )}
-    >
+    <div className={cn("mb-8 text-center", className)}>
       {subtitle && (
-        <p className="mb-3 text-xs uppercase tracking-[0.35em] text-gold">
-          {subtitle}
+        <p className="font-system mb-1 text-poke-red">
+          {subtitle.toUpperCase()}
         </p>
       )}
-      <h2 className="font-serif text-3xl leading-tight text-ivory md:text-5xl">
-        {title}
-      </h2>
-      <div
-        className={cn(
-          "mt-6 h-px w-16 bg-gradient-to-r from-gold to-transparent",
-          align === "center" && "mx-auto",
-        )}
-      />
+      <h2 className="font-display text-2xl text-text md:text-3xl">{title}</h2>
+      <div className="mx-auto mt-2 h-1 w-16 rounded-full bg-primary-yellow" />
     </div>
   );
 }

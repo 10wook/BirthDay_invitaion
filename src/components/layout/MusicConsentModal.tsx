@@ -1,7 +1,6 @@
 "use client";
 
 import { Modal } from "@/components/ui/Modal";
-import { Music } from "lucide-react";
 
 interface MusicConsentModalProps {
   isOpen: boolean;
@@ -9,39 +8,19 @@ interface MusicConsentModalProps {
   onDecline: () => void;
 }
 
-export function MusicConsentModal({
-  isOpen,
-  onAccept,
-  onDecline,
-}: MusicConsentModalProps) {
+export function MusicConsentModal({ isOpen, onAccept, onDecline }: MusicConsentModalProps) {
   return (
     <Modal isOpen={isOpen} onClose={onDecline}>
-      <div className="flex flex-col items-center text-center">
-        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-gold/30 bg-gold/10">
-          <Music className="text-gold" size={28} />
-        </div>
-        <h2 className="font-serif text-2xl text-ivory md:text-3xl">
-          배경 음악을 재생할까요?
-        </h2>
-        <p className="mt-3 max-w-sm text-sm leading-relaxed text-warm-gray">
-          더욱 특별한 초대 경험을 위해
-          <br />
-          배경 음악과 함께 감상해 주세요.
-        </p>
-        <div className="mt-8 flex w-full flex-col gap-3 sm:flex-row">
-          <button
-            type="button"
-            onClick={onAccept}
-            className="flex-1 rounded-full bg-gold px-6 py-3 text-sm font-medium tracking-wide text-charcoal transition hover:bg-gold-light"
-          >
-            음악 켜기
+      <div className="text-center">
+        <p className="text-3xl">🎵</p>
+        <h2 className="font-display mt-3 text-xl text-text">Adventure BGM?</h2>
+        <p className="mt-2 text-sm text-text-light">Play background music for the full experience</p>
+        <div className="mt-5 flex flex-col gap-2">
+          <button type="button" onClick={onAccept} className="min-h-[48px] rounded-xl border-2 border-dex-border bg-poke-red font-bold text-white shadow-[2px_2px_0_#4B4B4B]">
+            Music ON
           </button>
-          <button
-            type="button"
-            onClick={onDecline}
-            className="flex-1 rounded-full border border-warm-gray/40 px-6 py-3 text-sm tracking-wide text-warm-gray transition hover:border-gold/40 hover:text-ivory"
-          >
-            괜찮아요
+          <button type="button" onClick={onDecline} className="min-h-[44px] rounded-xl border-2 border-dex-border bg-white font-bold text-text-light">
+            No thanks
           </button>
         </div>
       </div>

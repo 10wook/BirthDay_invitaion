@@ -1,82 +1,73 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import { trainerConfig } from "@/config/trainer";
+import { PokedexLoadingScreen } from "@/components/sections/PokedexLoadingScreen";
 import { HeroSection } from "@/components/sections/HeroSection";
+import { PokeballDecorations } from "@/components/decorations/PokeballDecorations";
 
-const StorySection = dynamic(
-  () =>
-    import("@/components/sections/StorySection").then((m) => m.StorySection),
-  { loading: () => <SectionLoader /> },
+const TrainerProfileSection = dynamic(() =>
+  import("@/components/sections/TrainerProfileSection").then((m) => m.TrainerProfileSection),
 );
-
-const GallerySection = dynamic(
-  () =>
-    import("@/components/sections/GallerySection").then(
-      (m) => m.GallerySection,
-    ),
-  { loading: () => <SectionLoader />, ssr: false },
+const MemoryBadgesSection = dynamic(() =>
+  import("@/components/sections/MemoryBadgesSection").then((m) => m.MemoryBadgesSection),
 );
-
-const VideoSection = dynamic(
-  () =>
-    import("@/components/sections/VideoSection").then((m) => m.VideoSection),
-  { loading: () => <SectionLoader /> },
+const PartyPokemonSection = dynamic(() =>
+  import("@/components/sections/PartyPokemonSection").then((m) => m.PartyPokemonSection),
 );
-
-const TimelineSection = dynamic(
-  () =>
-    import("@/components/sections/TimelineSection").then(
-      (m) => m.TimelineSection,
-    ),
-  { loading: () => <SectionLoader /> },
+const AdventureLogSection = dynamic(() =>
+  import("@/components/sections/AdventureLogSection").then((m) => m.AdventureLogSection),
 );
-
-const CountdownSection = dynamic(
-  () =>
-    import("@/components/sections/CountdownSection").then(
-      (m) => m.CountdownSection,
-    ),
-  { loading: () => <SectionLoader />, ssr: false },
+const PhotoDexSection = dynamic(
+  () => import("@/components/sections/PhotoDexSection").then((m) => m.PhotoDexSection),
+  { ssr: false },
 );
-
-const LocationSection = dynamic(
-  () =>
-    import("@/components/sections/LocationSection").then(
-      (m) => m.LocationSection,
-    ),
-  { loading: () => <SectionLoader /> },
+const VideoMemorySection = dynamic(() =>
+  import("@/components/sections/VideoMemorySection").then((m) => m.VideoMemorySection),
 );
-
-const RsvpSection = dynamic(
-  () =>
-    import("@/components/sections/RsvpSection").then((m) => m.RsvpSection),
-  { loading: () => <SectionLoader /> },
+const NextLevelUpSection = dynamic(
+  () => import("@/components/sections/NextLevelUpSection").then((m) => m.NextLevelUpSection),
+  { ssr: false },
 );
-
-const ClosingSection = dynamic(
-  () =>
-    import("@/components/sections/ClosingSection").then(
-      (m) => m.ClosingSection,
-    ),
-  { loading: () => <SectionLoader /> },
+const LocationSection = dynamic(() =>
+  import("@/components/sections/LocationSection").then((m) => m.LocationSection),
 );
-
-function SectionLoader() {
-  return <div className="min-h-[50vh]" />;
-}
+const JoinAdventureSection = dynamic(() =>
+  import("@/components/sections/JoinAdventureSection").then((m) => m.JoinAdventureSection),
+);
+const EndingSection = dynamic(() =>
+  import("@/components/sections/EndingSection").then((m) => m.EndingSection),
+);
 
 export function InvitationPage() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (sessionStorage.getItem("pokedex_loaded") === "1") {
+      setLoading(false);
+    }
+  }, []);
+
   return (
-    <main className="relative">
-      <HeroSection />
-      <StorySection />
-      <GallerySection />
-      <VideoSection />
-      <TimelineSection />
-      <CountdownSection />
-      <LocationSection />
-      <RsvpSection />
-      <ClosingSection />
-    </main>
+    <>
+      <PokeballDecorations />
+      {loading && <PokedexLoadingScreen onComplete={() => setLoading(false)} />}
+      {!loading && (
+        <main className="relative z-[2] mx-auto max-w-[430px]">
+          <HeroSection />
+          <TrainerProfileSection />
+          <MemoryBadgesSection />
+          <PartyPokemonSection />
+          <AdventureLogSection />
+          <PhotoDexSection />
+          <VideoMemorySection />
+          <NextLevelUpSection />
+          <LocationSection />
+          <JoinAdventureSection />
+          <EndingSection />
+        </main>
+      )}
+    </>
   );
 }
