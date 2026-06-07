@@ -16,25 +16,51 @@ export interface SiteConfig {
   mapEmbedUrl?: string;
   rsvpAttendUrl: string;
   rsvpDeclineUrl: string;
+  rsvpMaybeUrl: string;
+  profileImageSrc: string;
 }
 
-export interface StoryItem {
+export interface TrainerConfig {
+  name: string;
+  nameKo: string;
+  trainerNo: string;
+  birthday: string;
+  birthdayDisplay: string;
+  level: number;
+  nextLevel: number;
+  region: string;
+  trainerClass: string;
+  type: string;
+  hp: number;
+  exp: number;
+  rank: string;
+}
+
+export interface AdventureEntry {
+  year: string;
+  title: string;
+  description: string;
+}
+
+export interface MemoryBadge {
   id: string;
-  text: string;
+  emoji: string;
+  name: string;
+  description: string;
+}
+
+export interface PartySlot {
+  id: string;
+  slotNo: number;
+  nickname: string;
+  memory: string;
+  story: string;
   image: string;
-  imageAlt: string;
 }
 
 export interface GalleryImage {
   src: string;
   alt: string;
-}
-
-export interface TimelineEntry {
-  year: string;
-  title: string;
-  description: string;
-  image: string;
 }
 
 export interface CountdownValues {

@@ -1,6 +1,12 @@
-# BirthDay Invitation
+# BirthDay Invitation — Pokémon Trainer Adventure
 
-한영욱의 생일 파티 프리미엄 디지털 초대장
+Trainer **Han Young Wook (No.0912)** Pokédex-style mobile birthday invitation.
+
+## Branches
+- `feat/pokemon-trainer-invitation` — Pokémon trainer theme (current)
+- `feat/mobile-idol-cafe-redesign` — Idol cafe pastel theme
+- `feat/birthday-invitation-core` — Initial luxury theme
+- `chore/vercel-and-assets` — Vercel deploy config
 
 ## 기술 스택
 

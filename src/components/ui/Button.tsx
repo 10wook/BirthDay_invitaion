@@ -17,16 +17,16 @@ interface ButtonProps {
 
 const variants = {
   primary:
-    "bg-gold text-charcoal hover:bg-gold-light border border-transparent",
+    "bg-poke-red text-white border-2 border-dex-border shadow-[3px_3px_0_#4B4B4B] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#4B4B4B]",
   secondary:
-    "bg-transparent text-ivory border border-gold/50 hover:border-gold hover:bg-gold/10",
-  ghost: "bg-transparent text-warm-gray hover:text-ivory border border-transparent",
+    "bg-primary-yellow text-text border-2 border-dex-border shadow-[3px_3px_0_#4B4B4B]",
+  ghost: "bg-white/80 text-text border-2 border-dex-border",
 };
 
 const sizes = {
-  sm: "px-4 py-2 text-xs",
-  md: "px-6 py-3 text-sm",
-  lg: "px-8 py-4 text-base",
+  sm: "px-4 py-2 text-sm min-h-[44px]",
+  md: "px-6 py-3 text-base min-h-[48px]",
+  lg: "px-6 py-4 text-base min-h-[52px] w-full",
 };
 
 export function Button({
@@ -40,7 +40,7 @@ export function Button({
   rel,
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center rounded-full font-medium tracking-wide transition-all duration-300",
+    "inline-flex items-center justify-center rounded-xl font-bold transition-all",
     variants[variant],
     sizes[size],
     className,
@@ -48,7 +48,6 @@ export function Button({
 
   if (href) {
     const isExternal = href.startsWith("http");
-
     if (isExternal) {
       return (
         <motion.a
@@ -56,31 +55,21 @@ export function Button({
           className={classes}
           target={target}
           rel={rel ?? "noopener noreferrer"}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
+          whileTap={{ scale: 0.97 }}
         >
           {children}
         </motion.a>
       );
     }
-
     return (
-      <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-        <Link href={href} className={classes} target={target} rel={rel}>
-          {children}
-        </Link>
+      <motion.div whileTap={{ scale: 0.97 }}>
+        <Link href={href} className={classes}>{children}</Link>
       </motion.div>
     );
   }
 
   return (
-    <motion.button
-      type="button"
-      onClick={onClick}
-      className={classes}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-    >
+    <motion.button type="button" onClick={onClick} className={classes} whileTap={{ scale: 0.97 }}>
       {children}
     </motion.button>
   );
