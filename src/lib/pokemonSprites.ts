@@ -45,10 +45,26 @@ const DUEL_SPRITE_URLS: Record<number, string> = {
   1008: `${SHOWDOWN_GEN5ANI}/miraidon.gif`,
 };
 
-/** gen5ani=오른쪽 기본. koraidon=왼쪽. 일부 전설=방향 반전 */
+/** gen5ani 기본=오른쪽. GIF가 왼쪽을 보는 dex만 등록 */
 const DUEL_FACE_LEFT = new Set([
   150, 151, 249, 250, 382, 383, 483, 484, 643, 644, 716, 717, 791, 792, 888, 889, 1007, 1008,
 ]);
+
+/** 대결 스프라이트 바닥 정렬 미세 조정 (px) */
+const DUEL_SPRITE_OFFSET: Record<number, { x: number; y: number }> = {
+  249: { x: 0, y: 4 },
+  250: { x: 0, y: 2 },
+  382: { x: 0, y: 6 },
+  383: { x: 0, y: 4 },
+  643: { x: 0, y: 2 },
+  644: { x: 0, y: 2 },
+  791: { x: 0, y: 4 },
+  792: { x: 0, y: 6 },
+  888: { x: 0, y: 2 },
+  889: { x: 0, y: 2 },
+  1007: { x: 0, y: 4 },
+  1008: { x: 0, y: 4 },
+};
 
 /** 캔버스 여백이 커서 작아 보이는 스프라이트 — 표시 배율 */
 const SPRITE_DISPLAY_SCALE: Record<number, number> = {
@@ -90,7 +106,11 @@ export function getDuelAnimatedSpriteUrl(dexNo: number): string {
 
 /** 왼쪽=오른쪽 봄, 오른쪽=왼쪽 봄 */
 export function getDuelSpriteFlip(dexNo: number, side: "left" | "right"): boolean {
-  const facesRight = !DUEL_FACE_LEFT.has(dexNo);
-  if (side === "left") return !facesRight;
-  return facesRight;
+  const facesLeft = DUEL_FACE_LEFT.has(dexNo);
+  if (side === "left") return facesLeft;
+  return !facesLeft;
+}
+
+export function getDuelSpriteOffset(dexNo: number): { x: number; y: number } {
+  return DUEL_SPRITE_OFFSET[dexNo] ?? { x: 0, y: 0 };
 }

@@ -2,7 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { getLegendaryDuel, pickRandomDuelId } from "@/config/legendaryDuels";
-import { getDuelAnimatedSpriteUrl, getDuelSpriteFlip } from "@/lib/pokemonSprites";
+import {
+  getDuelAnimatedSpriteUrl,
+  getDuelSpriteFlip,
+  getDuelSpriteOffset,
+} from "@/lib/pokemonSprites";
 
 const SESSION_KEY = "legendary_duel_id";
 
@@ -16,22 +20,23 @@ function DuelSprite({
   side: "left" | "right";
 }) {
   const flip = getDuelSpriteFlip(dexNo, side);
+  const offset = getDuelSpriteOffset(dexNo);
+  const transform = `${flip ? "scaleX(-1) " : ""}translate(${offset.x}px, ${offset.y}px)`;
 
   return (
-    <div
-      className="duel-sprite-wrap"
-      style={{ transform: flip ? "scaleX(-1)" : undefined }}
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={getDuelAnimatedSpriteUrl(dexNo)}
-        alt={name}
-        width={72}
-        height={72}
-        className="duel-sprite h-[72px] w-[72px] object-contain [image-rendering:pixelated]"
-        draggable={false}
-      />
-    </div>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={getDuelAnimatedSpriteUrl(dexNo)}
+      alt={name}
+      width={72}
+      height={72}
+      className="duel-sprite block h-[72px] w-[72px] object-contain [image-rendering:pixelated]"
+      style={{
+        transform,
+        transformOrigin: "bottom center",
+      }}
+      draggable={false}
+    />
   );
 }
 
@@ -55,8 +60,10 @@ export function LegendaryDuelBackground() {
       aria-hidden
     >
       <div className="legendary-duel__arena">
-        <div className="legendary-duel__fighter legendary-duel__fighter--left">
-          <DuelSprite dexNo={duel.left.dexNo} name={duel.left.name} side="left" />
+        <div className="legendary-duel__fighter">
+          <div className="duel-lunge duel-lunge--left">
+            <DuelSprite dexNo={duel.left.dexNo} name={duel.left.name} side="left" />
+          </div>
         </div>
 
         <div className="legendary-duel__clash">
@@ -74,8 +81,10 @@ export function LegendaryDuelBackground() {
           />
         </div>
 
-        <div className="legendary-duel__fighter legendary-duel__fighter--right">
-          <DuelSprite dexNo={duel.right.dexNo} name={duel.right.name} side="right" />
+        <div className="legendary-duel__fighter">
+          <div className="duel-lunge duel-lunge--right">
+            <DuelSprite dexNo={duel.right.dexNo} name={duel.right.name} side="right" />
+          </div>
         </div>
       </div>
 
