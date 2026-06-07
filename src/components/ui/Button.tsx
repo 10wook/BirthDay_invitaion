@@ -20,10 +20,10 @@ interface ButtonProps {
 
 const variants = {
   primary:
-    "bg-poke-red text-white border-2 border-dex-border shadow-[3px_3px_0_#4B4B4B] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0_#4B4B4B]",
+    "bg-[#FFCB05] text-[#222] shadow-[0_4px_14px_rgba(255,203,5,0.45)] hover:bg-[#ffd633] active:shadow-[0_2px_8px_rgba(255,203,5,0.35)]",
   secondary:
-    "bg-primary-yellow text-text border-2 border-dex-border shadow-[3px_3px_0_#4B4B4B]",
-  ghost: "bg-white/80 text-text border-2 border-dex-border",
+    "bg-[#3B4CCA] text-white shadow-[0_4px_14px_rgba(59,76,202,0.35)] hover:bg-[#4a5bd4]",
+  ghost: "bg-white text-text-light border border-[#E5E7EB] shadow-sm hover:bg-[#FAFAFA]",
 };
 
 const sizes = {
@@ -52,7 +52,7 @@ export function Button({
   };
 
   const classes = cn(
-    "inline-flex items-center justify-center rounded-xl font-bold transition-all",
+    "inline-flex items-center justify-center rounded-full font-bold transition-all",
     variants[variant],
     sizes[size],
     className,

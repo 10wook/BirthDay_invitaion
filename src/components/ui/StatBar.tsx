@@ -18,7 +18,7 @@ export function StatBar({
   className,
 }: StatBarProps) {
   const pct = Math.min(100, (value / max) * 100);
-  const fill = color === "hp" ? "bg-grass-green" : "bg-primary-yellow";
+  const fill = color === "hp" ? "bg-[#78C850]" : "bg-[#FFCB05]";
 
   return (
     <div className={cn("w-full", className)}>
@@ -33,7 +33,7 @@ export function StatBar({
       </div>
       <div
         className={cn(
-          "overflow-hidden rounded-full border-2 border-dex-border bg-white",
+          "overflow-hidden rounded-full border border-[#E5E7EB] bg-[#F3F4F6]",
           size === "sm" ? "h-2" : "h-3",
         )}
       >

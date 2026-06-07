@@ -34,9 +34,9 @@ export function AdventureLogSection() {
         <SectionTitle subtitle="Journey Log" title="Adventure Log" />
         <div className="space-y-4">
           {adventureLog.map((entry) => (
-            <DexCard key={entry.year} data-log className="relative pl-4">
-              <div className="absolute left-0 top-0 h-full w-1 rounded-full bg-poke-red" />
-              <p className="font-display text-lg text-poke-red">{entry.year}</p>
+            <DexCard key={entry.year} data-log className="relative overflow-hidden pl-4">
+              <div className="absolute left-0 top-0 h-full w-1 rounded-full bg-[#3B4CCA]" />
+              <p className="text-sm font-bold text-[#3B4CCA]">{entry.year}</p>
               <p className="font-bold text-text">{entry.title}</p>
               <p className="mt-1 text-sm text-text-light">{entry.description}</p>
             </DexCard>

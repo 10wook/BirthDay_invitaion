@@ -13,7 +13,6 @@ interface PokedexLoadingScreenProps {
 export function PokedexLoadingScreen({ onComplete }: PokedexLoadingScreenProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
-  const scanRef = useRef<HTMLDivElement>(null);
   const [lines, setLines] = useState<string[]>([]);
   const [progressDone, setProgressDone] = useState(false);
   const { unlock, playSfx } = useAudio();
@@ -21,7 +20,6 @@ export function PokedexLoadingScreen({ onComplete }: PokedexLoadingScreenProps) 
   useEffect(() => {
     const messages = [
       "Scanning Trainer...",
-      "██████████ 100%",
       "Trainer Found",
       "Pokédex Entry Loaded",
       `No.${trainerConfig.trainerNo}`,
@@ -42,12 +40,6 @@ export function PokedexLoadingScreen({ onComplete }: PokedexLoadingScreenProps) 
         duration: 2.5,
         ease: "power2.inOut",
         onComplete: () => setProgressDone(true),
-      });
-      gsap.to(scanRef.current, {
-        y: "200%",
-        duration: 1.2,
-        repeat: -1,
-        ease: "none",
       });
     });
 
@@ -71,31 +63,26 @@ export function PokedexLoadingScreen({ onComplete }: PokedexLoadingScreenProps) 
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-[200] flex items-center justify-center bg-cream px-6"
+      className="fixed inset-0 z-[200] flex items-center justify-center bg-[#EEF0F4] px-6"
     >
-      <div className="dex-screen relative w-full max-w-[360px] overflow-hidden p-6">
-        <div
-          ref={scanRef}
-          className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-grass-green/60"
-        />
-        <p className="font-display mb-4 text-center text-lg text-text">POKÉDEX</p>
-        <div className="mb-4 h-4 overflow-hidden rounded-full border-2 border-dex-border bg-white">
-          <div ref={barRef} className="h-full w-0 rounded-full bg-grass-green" />
+      <div className="promo-panel w-full max-w-[360px] p-6">
+        <div className="mb-4 text-center">
+          <span className="promo-label">POKÉDEX</span>
         </div>
-        <div className="min-h-[120px] space-y-2">
+        <div className="mb-4 h-2 overflow-hidden rounded-full bg-[#E5E7EB]">
+          <div ref={barRef} className="h-full w-0 rounded-full bg-[#FFCB05]" />
+        </div>
+        <div className="min-h-[100px] space-y-2">
           {lines.map((line, idx) => (
-            <p
-              key={idx}
-              className={idx === 0 ? "font-system text-xs text-text" : "text-sm text-text"}
-            >
+            <p key={idx} className="text-sm text-text-light">
               {line}
             </p>
           ))}
         </div>
         {progressDone && (
-          <div className="mt-6 animate-pulse">
+          <div className="mt-6">
             <Button variant="primary" size="lg" sfx="none" onClick={handleStart}>
-              ▶ PRESS START
+              시작하기 →
             </Button>
           </div>
         )}

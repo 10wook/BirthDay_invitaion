@@ -1,13 +1,16 @@
 export const theme = {
   colors: {
-    primaryYellow: "#FFE37A",
-    pokeRed: "#FF6B6B",
+    officialYellow: "#FFCB05",
+    officialBlue: "#3B4CCA",
+    primaryYellow: "#FFCB05",
+    pokeRed: "#E3350D",
     skyBlue: "#8ED8FF",
-    grassGreen: "#B8E986",
+    grassGreen: "#78C850",
     cream: "#FFF8E8",
-    text: "#4B4B4B",
-    textLight: "#7A7A7A",
-    dexBorder: "#4B4B4B",
+    pageBg: "#EEF0F4",
+    text: "#222222",
+    textLight: "#666666",
+    dexBorder: "#E5E7EB",
   },
   fonts: {
     display: "var(--font-fredoka)",

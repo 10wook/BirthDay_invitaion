@@ -54,7 +54,7 @@ export function InvitationPage() {
       <PokeballDecorations />
       {loading && <PokedexLoadingScreen onComplete={() => setLoading(false)} />}
       {!loading && (
-        <main className="relative z-[2] mx-auto max-w-[430px]">
+        <main className="relative z-[2] mx-auto max-w-[430px] bg-page-bg">
           <HeroSection />
           <TrainerProfileSection />
           <MemoryBadgesSection />

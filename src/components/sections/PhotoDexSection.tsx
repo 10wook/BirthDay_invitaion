@@ -57,7 +57,7 @@ export function PhotoDexSection() {
             >
               {galleryImages.map((img) => (
                 <SwiperSlide key={img.src}>
-                  <div className="relative aspect-[4/5] overflow-hidden rounded-xl border-2 border-dex-border">
+                  <div className="relative aspect-[4/5] overflow-hidden rounded-2xl shadow-[0_8px_24px_rgba(0,0,0,0.1)]">
                     <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="85vw" loading="lazy" />
                   </div>
                 </SwiperSlide>

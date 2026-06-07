@@ -1,6 +1,7 @@
 "use client";
 
 import { Modal } from "@/components/ui/Modal";
+import { Button } from "@/components/ui/Button";
 
 interface MusicConsentModalProps {
   isOpen: boolean;
@@ -13,15 +14,15 @@ export function MusicConsentModal({ isOpen, onAccept, onDecline }: MusicConsentM
     <Modal isOpen={isOpen} onClose={onDecline}>
       <div className="text-center">
         <p className="text-3xl">🎵</p>
-        <h2 className="font-display mt-3 text-xl text-text">Adventure BGM?</h2>
-        <p className="mt-2 text-sm text-text-light">Play background music for the full experience</p>
+        <h2 className="font-display mt-3 text-xl font-bold text-text">Adventure BGM?</h2>
+        <p className="mt-2 text-sm text-text-light">배경음악을 켜면 더 몰입감 있게 즐길 수 있어요</p>
         <div className="mt-5 flex flex-col gap-2">
-          <button type="button" onClick={onAccept} className="min-h-[48px] rounded-xl border-2 border-dex-border bg-poke-red font-bold text-white shadow-[2px_2px_0_#4B4B4B]">
+          <Button variant="secondary" size="lg" sfx="none" onClick={onAccept}>
             Music ON
-          </button>
-          <button type="button" onClick={onDecline} className="min-h-[44px] rounded-xl border-2 border-dex-border bg-white font-bold text-text-light">
+          </Button>
+          <Button variant="ghost" size="lg" sfx="none" onClick={onDecline}>
             No thanks
-          </button>
+          </Button>
         </div>
       </div>
     </Modal>

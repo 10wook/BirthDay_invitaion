@@ -1,24 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  --primary-yellow: #ffe37a;
-  --poke-red: #ff6b6b;
+  --official-yellow: #ffcb05;
+  --official-blue: #3b4cca;
+  --primary-yellow: #ffcb05;
+  --poke-red: #e3350d;
   --sky-blue: #8ed8ff;
-  --grass-green: #b8e986;
+  --grass-green: #78c850;
   --cream: #fff8e8;
-  --text: #4b4b4b;
-  --text-light: #7a7a7a;
-  --dex-border: #4b4b4b;
-  --background: var(--cream);
+  --page-bg: #eef0f4;
+  --text: #222222;
+  --text-light: #666666;
+  --dex-border: #e5e7eb;
+  --background: var(--page-bg);
   --foreground: var(--text);
 }
 
 @theme inline {
+  --color-official-yellow: var(--official-yellow);
+  --color-official-blue: var(--official-blue);
   --color-primary-yellow: var(--primary-yellow);
   --color-poke-red: var(--poke-red);
   --color-sky-blue: var(--sky-blue);
   --color-grass-green: var(--grass-green);
   --color-cream: var(--cream);
+  --color-page-bg: var(--page-bg);
   --color-text: var(--text);
   --color-text-light: var(--text-light);
   --color-dex-border: var(--dex-border);
@@ -35,8 +41,7 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 
 body {
-  background: linear-gradient(180deg, var(--cream) 0%, #fff3c4 50%, var(--sky-blue) 100%);
-  background-attachment: fixed;
+  background: var(--page-bg);
   color: var(--text);
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
@@ -47,17 +52,48 @@ body {
 .font-display { font-family: var(--font-fredoka), sans-serif; }
 .font-system { font-family: var(--font-press-start), monospace; font-size: 0.65rem; line-height: 1.6; }
 
+/* 공식 사이트 스타일 카드 */
 .dex-card {
-  background: var(--cream);
-  border: 3px solid var(--dex-border);
-  border-radius: 16px;
-  box-shadow: 4px 4px 0 var(--dex-border);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.dex-card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
+}
+
+.promo-panel {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.promo-banner {
+  background: linear-gradient(160deg, #ffcb05 0%, #ffe066 45%, #ffcb05 100%);
+  border-radius: 24px;
+  box-shadow: 0 12px 40px rgba(255, 203, 5, 0.28);
+}
+
+.promo-label {
+  display: inline-block;
+  border-radius: 999px;
+  background: var(--official-blue);
+  padding: 0.35rem 0.85rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #ffffff;
 }
 
 .dex-screen {
-  background: linear-gradient(180deg, #e8f8ff 0%, #d4f0ff 100%);
-  border: 3px solid var(--dex-border);
-  border-radius: 12px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
 
 @keyframes float {
@@ -74,8 +110,8 @@ body {
 .animate-sparkle { animation: sparkle 2s ease-in-out infinite; }
 
 .gallery-swiper .swiper-pagination-bullet {
-  background: var(--poke-red);
-  opacity: 0.4;
+  background: var(--official-blue);
+  opacity: 0.35;
 }
 .gallery-swiper .swiper-pagination-bullet-active { opacity: 1; }
 
@@ -87,5 +123,5 @@ body {
 }
 
 ::selection {
-  background: rgba(255, 227, 122, 0.6);
+  background: rgba(255, 203, 5, 0.45);
 }

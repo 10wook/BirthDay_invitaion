@@ -36,8 +36,8 @@ export function JoinAdventureSection() {
         <SectionTitle subtitle="RSVP" title="Join The Adventure" />
         <div className="flex flex-col gap-3">
           <div data-rsvp>
-            <Button variant="primary" size="lg" sfx="CONFIRM" onClick={() => open(siteConfig.rsvpAttendUrl)}>
-              ● Join Adventure
+            <Button variant="secondary" size="lg" sfx="CONFIRM" onClick={() => open(siteConfig.rsvpAttendUrl)}>
+              Join Adventure →
             </Button>
           </div>
           <div data-rsvp>

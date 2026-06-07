@@ -6,7 +6,6 @@ interface SectionWrapperProps {
   children: React.ReactNode;
   className?: string;
   fullHeight?: boolean;
-  /** 섹션 상단 Poké Ball 구분선 (기본: true) */
   showDivider?: boolean;
 }
 
@@ -21,15 +20,15 @@ export function SectionWrapper({
     <section
       id={id}
       className={cn(
-        "relative z-[2] w-full px-4 pb-14 md:px-6",
-        showDivider ? "pt-4" : "pt-14",
+        "relative z-[2] w-full px-4 pb-8 md:px-6",
+        showDivider ? "pt-2" : "pt-10",
         fullHeight && "min-h-screen",
         className,
       )}
     >
       <div className="mx-auto w-full max-w-[430px]">
         {showDivider && <SectionDivider />}
-        {children}
+        <div className="promo-panel p-5 md:p-6">{children}</div>
       </div>
     </section>
   );

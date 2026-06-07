@@ -8,7 +8,6 @@ import { trainerConfig } from "@/config/trainer";
 import { siteConfig } from "@/config/site";
 import { SectionWrapper } from "@/components/layout/SectionWrapper";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { DexCard } from "@/components/ui/DexCard";
 import { StatBar } from "@/components/ui/StatBar";
 
 const stats = [
@@ -46,55 +45,53 @@ export function TrainerProfileSection() {
     <SectionWrapper id="trainer-profile">
       <section ref={sectionRef}>
         <SectionTitle subtitle="Trainer Data" title="Trainer Profile" />
-        <DexCard>
-          <div data-profile className="mb-4 flex items-center gap-4">
-            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 border-dex-border">
-              <Image
-                src={siteConfig.profileImageSrc}
-                alt={trainerConfig.name}
-                fill
-                className="object-cover"
-                sizes="80px"
-              />
-            </div>
-            <div>
-              <p className="font-display text-xl">{trainerConfig.nameKo}</p>
-              <p className="text-sm text-text-light">{trainerConfig.type}</p>
-            </div>
+        <div data-profile className="mb-5 flex items-center gap-4 rounded-2xl bg-[#F9FAFB] p-4">
+          <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl ring-2 ring-[#FFCB05]">
+            <Image
+              src={siteConfig.profileImageSrc}
+              alt={trainerConfig.name}
+              fill
+              className="object-cover"
+              sizes="80px"
+            />
           </div>
-          <div data-profile className="mb-4 grid grid-cols-2 gap-2">
-            {stats.map((s) => (
-              <div key={s.label} className="rounded-lg bg-white/60 px-3 py-2">
-                <p className="font-system text-[8px] text-text-light">{s.label.toUpperCase()}</p>
-                <p className="text-sm font-bold text-text">{s.value}</p>
-              </div>
-            ))}
+          <div>
+            <p className="font-display text-xl font-bold">{trainerConfig.nameKo}</p>
+            <p className="text-sm text-text-light">{trainerConfig.type}</p>
           </div>
-          <div data-profile className="space-y-3">
-            <StatBar label="HP" value={trainerConfig.hp} color="hp" />
-            <StatBar label="EXP" value={trainerConfig.exp} color="exp" />
-          </div>
-          <div data-profile className="mt-4 grid grid-cols-2 gap-2">
-            <div className="rounded-lg bg-grass-green/20 px-3 py-2 text-center">
-              <p className="font-system text-[8px] text-text-light">BADGES</p>
-              <p className="font-display text-lg">
-                {trainerConfig.badgeCount}/{trainerConfig.badgeCount}
-              </p>
+        </div>
+        <div data-profile className="mb-4 grid grid-cols-2 gap-2">
+          {stats.map((s) => (
+            <div key={s.label} className="rounded-xl bg-[#F9FAFB] px-3 py-2.5">
+              <p className="text-[10px] font-bold uppercase tracking-wide text-text-light">{s.label}</p>
+              <p className="mt-0.5 text-sm font-bold text-text">{s.value}</p>
             </div>
-            <div className="rounded-lg bg-sky-blue/30 px-3 py-2 text-center">
-              <p className="font-system text-[8px] text-text-light">PARTY</p>
-              <p className="font-display text-lg">
-                {trainerConfig.partyCount}/{trainerConfig.partyCount}
-              </p>
-            </div>
+          ))}
+        </div>
+        <div data-profile className="space-y-3">
+          <StatBar label="HP" value={trainerConfig.hp} color="hp" />
+          <StatBar label="EXP" value={trainerConfig.exp} color="exp" />
+        </div>
+        <div data-profile className="mt-4 grid grid-cols-2 gap-2">
+          <div className="rounded-xl bg-[#FFCB05]/20 px-3 py-3 text-center">
+            <p className="text-[10px] font-bold text-text-light">BADGES</p>
+            <p className="font-display text-lg font-bold">
+              {trainerConfig.badgeCount}/{trainerConfig.badgeCount}
+            </p>
           </div>
-          <p
-            data-profile
-            className="font-system mt-4 rounded-lg border-2 border-dex-border bg-primary-yellow py-2 text-center text-poke-red"
-          >
-            POKÉDEX ENTRY COMPLETE
-          </p>
-        </DexCard>
+          <div className="rounded-xl bg-[#3B4CCA]/10 px-3 py-3 text-center">
+            <p className="text-[10px] font-bold text-text-light">PARTY</p>
+            <p className="font-display text-lg font-bold">
+              {trainerConfig.partyCount}/{trainerConfig.partyCount}
+            </p>
+          </div>
+        </div>
+        <p
+          data-profile
+          className="mt-4 rounded-full bg-[#3B4CCA] py-2.5 text-center text-xs font-bold text-white"
+        >
+          POKÉDEX ENTRY COMPLETE
+        </p>
       </section>
     </SectionWrapper>
   );
