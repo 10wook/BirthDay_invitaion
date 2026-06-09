@@ -20,17 +20,18 @@ export function PokedexLoadingScreen({ onComplete }: PokedexLoadingScreenProps) 
   const bootPlayedRef = useRef(false);
   const { unlock, playSfx } = useAudio();
 
-  // 처음 클릭/터치 시 닌텐도 부팅 소리 한 번만 재생
+  // 처음 클릭/터치 시 닌텐도 부팅 소리 — AudioManager와 독립적으로 재생
   useEffect(() => {
     const handler = () => {
       if (bootPlayedRef.current) return;
       bootPlayedRef.current = true;
-      unlock();
-      playSfx("NINTENDO_BOOT");
+      const audio = new Audio("/sfx/nintendo-boot.mp4");
+      audio.volume = 0.7;
+      void audio.play().catch(() => {});
     };
     window.addEventListener("pointerdown", handler, { once: true });
     return () => window.removeEventListener("pointerdown", handler);
-  }, [unlock, playSfx]);
+  }, []);
 
   useEffect(() => {
     const messages = [
