@@ -43,14 +43,14 @@ export function MemoryBadgesSection() {
   return (
     <SectionWrapper id="memory-badges">
       <section ref={sectionRef}>
-        <SectionTitle subtitle="Achievements" title="Memory Badges" />
+        <SectionTitle subtitle="업적" title="추억 배지" />
         <div className="grid grid-cols-4 gap-2">
           {memoryBadges.map((badge) => (
             <BadgeTile key={badge.id} badge={badge} onClick={() => handleBadgeClick(badge)} />
           ))}
         </div>
         <p className="font-system mt-4 text-center text-text-light">
-          BADGES {memoryBadges.length}/{memoryBadges.length}
+          배지 {memoryBadges.length}/{memoryBadges.length}
         </p>
       </section>
       <BadgeDetailModal badge={activeBadge} onClose={() => setActiveBadge(null)} />

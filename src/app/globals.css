@@ -54,14 +54,14 @@ body {
   );
   background-attachment: fixed;
   color: var(--text);
-  font-family: Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Galmuri11', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-.font-display { font-family: var(--font-fredoka), sans-serif; }
-.font-system { font-family: var(--font-press-start), monospace; font-size: 0.625rem; line-height: 1.7; }
+.font-display { font-family: 'Galmuri11', var(--font-fredoka), sans-serif; }
+.font-system { font-family: var(--font-press-start), 'Galmuri11', monospace; font-size: 0.625rem; line-height: 1.7; }
 
 /* GBA-style double-border window */
 .game-window,

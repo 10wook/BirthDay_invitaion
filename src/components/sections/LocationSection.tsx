@@ -11,9 +11,9 @@ import { Button } from "@/components/ui/Button";
 import { DexCard } from "@/components/ui/DexCard";
 
 const maps = [
-  { label: "Kakao Map", href: siteConfig.kakaoMapUrl },
-  { label: "Naver Map", href: siteConfig.naverMapUrl },
-  { label: "Google Maps", href: siteConfig.googleMapUrl },
+  { label: "카카오맵", href: siteConfig.kakaoMapUrl },
+  { label: "네이버 지도", href: siteConfig.naverMapUrl },
+  { label: "구글 지도", href: siteConfig.googleMapUrl },
 ];
 
 export function LocationSection() {
@@ -35,7 +35,7 @@ export function LocationSection() {
   return (
     <SectionWrapper id="location">
       <section ref={sectionRef}>
-        <SectionTitle subtitle="Map" title="Location" />
+        <SectionTitle subtitle="지도" title="장소 안내" />
         <DexCard data-loc>
           <div className="flex gap-3">
             <MapPin className="shrink-0 text-poke-red" size={20} />

@@ -20,14 +20,16 @@ const RSVP = {
     sfx: "CONFIRM" as const,
   },
   maybe: {
-    choiceLabel: "아직 고민 중",
-    flavorText: "마음은 있지만, 일정을 조금 더 확인할게.",
-    rsvpUrlKey: "rsvpMaybeUrl" as const,
+    choiceLabel: "같이 가자!",
+    flavorText: "이 포켓몬과 함께라면 최고의 모험이 될 거야!",
+    rsvpUrlKey: "rsvpAttendUrl" as const,
+    sfx: "CONFIRM" as const,
   },
   decline: {
-    choiceLabel: "다음에 만나요",
-    flavorText: "이번 모험은 쉬어가지만, 응원은 보낼게!",
-    rsvpUrlKey: "rsvpDeclineUrl" as const,
+    choiceLabel: "참여할게요!",
+    flavorText: "좋아, 이 파트너와 함께 생일 파티로 출발!",
+    rsvpUrlKey: "rsvpAttendUrl" as const,
+    sfx: "CONFIRM" as const,
   },
 };
 
@@ -40,7 +42,7 @@ const STARTER_SETS: Record<number, Omit<StarterChoice, "choiceLabel" | "flavorTe
   ],
   2: [
     { id: "chikorita", name: "Chikorita", nameKo: "치코리타", dexNo: 152, types: ["Grass"] },
-    { id: "cyndaquil", name: "Cyndaquil", nameKo: "블래비", dexNo: 155, types: ["Fire"] },
+    { id: "cyndaquil", name: "Cyndaquil", nameKo: "브케인", dexNo: 155, types: ["Fire"] },
     { id: "totodile", name: "Totodile", nameKo: "리아코", dexNo: 158, types: ["Water"] },
   ],
   3: [
@@ -59,7 +61,7 @@ const STARTER_SETS: Record<number, Omit<StarterChoice, "choiceLabel" | "flavorTe
     { id: "oshawott", name: "Oshawott", nameKo: "수댕이", dexNo: 501, types: ["Water"] },
   ],
   6: [
-    { id: "chespin", name: "Chespin", nameKo: "도치마롱", dexNo: 650, types: ["Grass"] },
+    { id: "chespin", name: "Chespin", nameKo: "도치마론", dexNo: 650, types: ["Grass"] },
     { id: "fennekin", name: "Fennekin", nameKo: "푸호꼬", dexNo: 653, types: ["Fire"] },
     { id: "froakie", name: "Froakie", nameKo: "개구마르", dexNo: 656, types: ["Water"] },
   ],

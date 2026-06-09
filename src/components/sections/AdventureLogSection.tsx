@@ -31,7 +31,7 @@ export function AdventureLogSection() {
   return (
     <SectionWrapper id="adventure-log">
       <section ref={sectionRef}>
-        <SectionTitle subtitle="Journey Log" title="Adventure Log" />
+        <SectionTitle subtitle="모험 기록" title="어드벤처 로그" />
         <div className="space-y-4">
           {adventureLog.map((entry) => (
             <div key={entry.year} data-log>

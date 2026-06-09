@@ -8,7 +8,7 @@ export function SiteHeader() {
         <PokeballIcon size={22} />
         <div className="min-w-0 flex-1">
           <p className="font-system truncate text-[8px] leading-none text-game-blue">
-            POKÉDEX · TRAINER No.{trainerConfig.trainerNo}
+            포켓몬 도감 · No.{trainerConfig.trainerNo}
           </p>
           <p className="font-display truncate text-sm font-bold leading-tight">
             {trainerConfig.nameKo}

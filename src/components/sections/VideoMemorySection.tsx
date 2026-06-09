@@ -44,7 +44,7 @@ export function VideoMemorySection() {
   return (
     <SectionWrapper id="video-memory">
       <section ref={sectionRef}>
-        <SectionTitle subtitle="Replay" title="Video Memory" />
+        <SectionTitle subtitle="다시보기" title="추억 영상" />
         <div ref={containerRef} className="relative mx-auto aspect-[4/5] max-w-[320px] overflow-hidden rounded-xl border-2 border-dex-border">
           {!failed ? (
             <video ref={videoRef} muted loop playsInline className="h-full w-full object-cover" poster="/images/gallery/01.jpg" onError={() => setFailed(true)}>
@@ -52,7 +52,7 @@ export function VideoMemorySection() {
             </video>
           ) : (
             <div className="flex h-full items-center justify-center bg-sky-blue/30 text-sm text-text-light">
-              Add /public/videos/memory.mp4
+              /public/videos/memory.mp4 파일을 추가하세요
             </div>
           )}
         </div>

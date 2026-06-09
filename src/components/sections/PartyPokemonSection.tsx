@@ -42,7 +42,7 @@ export function PartyPokemonSection() {
   return (
     <SectionWrapper id="party">
       <section ref={sectionRef}>
-        <SectionTitle subtitle="Party" title="Party Pokémon" />
+        <SectionTitle subtitle="파티" title="파티 포켓몬" />
         <div className="grid grid-cols-2 gap-3">
           {pokemonData.party.map((pokemon) => (
             <PokemonCard
@@ -53,7 +53,7 @@ export function PartyPokemonSection() {
           ))}
         </div>
         <p className="font-system mt-3 text-center text-text-light">
-          Tap a Pokémon to hear its cry & open Pokédex
+          포켓몬을 탭하면 울음소리와 도감을 확인할 수 있어요
         </p>
       </section>
       <PokemonDetailModal pokemon={activePokemon} onClose={() => setActivePokemon(null)} />

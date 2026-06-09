@@ -38,7 +38,7 @@ export function PhotoDexSection() {
   return (
     <SectionWrapper id="photo-dex">
       <section ref={sectionRef}>
-        <SectionTitle subtitle="Gallery" title="Photo Dex" />
+        <SectionTitle subtitle="갤러리" title="포토 도감" />
         <div data-photo-dex>
           {!mounted ? (
             <div className="aspect-[4/5] animate-pulse rounded-xl bg-primary-yellow/30" />

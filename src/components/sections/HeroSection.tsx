@@ -48,13 +48,13 @@ export function HeroSection() {
     >
       <div ref={contentRef} className="game-window dex-screen relative mx-auto w-full max-w-[430px] p-5">
         <p data-hero className="font-system text-center text-[8px] text-game-blue">
-          ■ POKÉDEX ENTRY
+          ■ 포켓몬 도감 등록
         </p>
         <p data-hero className="font-system mt-2 text-center text-poke-red">
           No.{trainerConfig.trainerNo}
         </p>
         <h1 data-hero className="font-display mt-2 text-center text-2xl font-bold leading-tight">
-          {trainerConfig.name.toUpperCase()}
+          {trainerConfig.nameKo}
         </h1>
         <p data-hero className="font-system mt-2 text-center text-[8px]">
           Lv.{trainerConfig.level} · {trainerConfig.region}
@@ -68,19 +68,19 @@ export function HeroSection() {
 
         <div data-hero className="mt-5">
           <Button variant="primary" size="lg" sfx="START" onClick={() => scrollTo("trainer-profile", "START")}>
-            ▶ PRESS START
+            ▶ 시작하기
           </Button>
         </div>
 
         <div data-hero className="mt-4 game-window p-3">
           <div className="flex items-center justify-between">
-            <p className="font-system text-[8px]">PARTY</p>
+            <p className="font-system text-[8px]">파티</p>
             <button
               type="button"
               onClick={() => scrollTo("party", "PARTY_OPEN")}
               className="font-system text-[8px] text-game-blue hover:underline"
             >
-              OPEN →
+              열기 →
             </button>
           </div>
           <div className="mt-2 flex flex-wrap items-end justify-center gap-1">

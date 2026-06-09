@@ -19,8 +19,8 @@ export function PokemonDetailModal({ pokemon, onClose }: PokemonDetailModalProps
     <DexModalShell
       isOpen={Boolean(pokemon)}
       onClose={onClose}
-      subtitle={`No.${String(pokemon.dexNo).padStart(3, "0")} · POKÉDEX`}
-      title={`${pokemon.emoji} ${pokemon.name}`}
+      subtitle={`No.${String(pokemon.dexNo).padStart(3, "0")} · 포켓몬 도감`}
+      title={`${pokemon.emoji} ${pokemon.nameKo}`}
     >
       <div className="mb-4 flex aspect-square items-center justify-center border-[3px] border-dex-border bg-[#C8F0C0]">
         <PokemonSprite dexNo={pokemon.dexNo} name={pokemon.name} size="lg" />
@@ -34,13 +34,13 @@ export function PokemonDetailModal({ pokemon, onClose }: PokemonDetailModalProps
         </span>
       </div>
       <StatBar label="HP" value={pokemon.hp} color="hp" />
-      <GameTextBox label="ENTRY" className="mt-4" showCursor={false}>
+      <GameTextBox label="도감 설명" className="mt-4" showCursor={false}>
         {pokemon.description}
       </GameTextBox>
-      <GameTextBox label="WHY CHOSEN" className="mt-3" showCursor={false}>
+      <GameTextBox label="선택 이유" className="mt-3" showCursor={false}>
         {pokemon.whyChosen}
       </GameTextBox>
-      <GameTextBox label="STORY" className="mt-3" showCursor={false}>
+      <GameTextBox label="스토리" className="mt-3" showCursor={false}>
         {pokemon.story}
       </GameTextBox>
       <div className="mt-3 flex flex-wrap gap-2">

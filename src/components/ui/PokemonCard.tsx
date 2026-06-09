@@ -30,7 +30,7 @@ export function PokemonCard({ pokemon, onClick }: PokemonCardProps) {
         </span>
       </div>
       <div className="p-3">
-        <p className="font-display text-base font-bold">{pokemon.name}</p>
+        <p className="font-display text-base font-bold">{pokemon.nameKo}</p>
         <div className="mt-1.5 flex flex-wrap gap-1">
           {pokemon.types.map((type) => (
             <TypeBadge key={type} type={type} />

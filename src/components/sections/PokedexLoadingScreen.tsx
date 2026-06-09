@@ -21,10 +21,10 @@ export function PokedexLoadingScreen({ onComplete }: PokedexLoadingScreenProps) 
 
   useEffect(() => {
     const messages = [
-      "SCANNING TRAINER...",
+      "트레이너 스캔 중...",
       "██████████ 100%",
-      "TRAINER FOUND",
-      "POKÉDEX ENTRY LOADED",
+      "트레이너 발견",
+      "포켓몬 도감 등록 완료",
       `No.${trainerConfig.trainerNo}`,
     ];
     let i = 0;
@@ -81,7 +81,7 @@ export function PokedexLoadingScreen({ onComplete }: PokedexLoadingScreenProps) 
         />
         <div className="mb-4 flex items-center justify-center gap-2">
           <PokeballIcon size={18} />
-          <p className="font-system text-center text-[10px] text-game-blue">POKÉDEX</p>
+          <p className="font-system text-center text-[10px] text-game-blue">포켓몬 도감</p>
         </div>
         <div className="mb-4 h-4 overflow-hidden border-2 border-dex-border bg-[#383838] p-0.5">
           <div ref={barRef} className="h-full w-0 bg-[#78C850]" />
@@ -99,7 +99,7 @@ export function PokedexLoadingScreen({ onComplete }: PokedexLoadingScreenProps) 
         {progressDone && (
           <div className="mt-6 animate-pulse">
             <Button variant="primary" size="lg" sfx="none" onClick={handleStart}>
-              ▶ PRESS START
+              ▶ 시작하기
             </Button>
           </div>
         )}

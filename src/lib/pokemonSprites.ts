@@ -7,7 +7,7 @@ const SHOWDOWN_ANI = "https://play.pokemonshowdown.com/sprites/ani";
 /** 파티·도감·스타팅용 — B/W 없거나 깨진 GIF 대체 */
 const ANIMATED_OVERRIDES: Record<number, string> = {
   131: "/sprites/animated/131.gif",
-  132: "/sprites/animated/132.gif",
+  132: `${SHOWDOWN_GEN5ANI}/ditto.gif`,
   650: `${SHOWDOWN_ANI}/chespin.gif`,
   653: `${SHOWDOWN_GEN5ANI}/fennekin.gif`,
   656: `${SHOWDOWN_GEN5ANI}/froakie.gif`,

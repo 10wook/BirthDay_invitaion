@@ -1,6 +1,6 @@
 export const SFX = {
   START: "/sfx/start.mp3",
-  POKEDEX_OPEN: "/sfx/pokedex-open.mp3",
+  POKEDEX_OPEN: "/sfx/pokedex-open.m4a",
   PARTY_OPEN: "/sfx/party-open.mp3",
   BADGE_UNLOCK: "/sfx/badge-unlock.mp3",
   LEVEL_UP: "/sfx/level-up.mp3",

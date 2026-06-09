@@ -3,6 +3,7 @@ export interface PokemonEntry {
   dexNo: number;
   emoji: string;
   name: string;
+  nameKo: string;
   level: number;
   types: string[];
   keywords: string[];

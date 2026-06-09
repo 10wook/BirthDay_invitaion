@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { trainerConfig } from "@/config/trainer";
 import { PokedexLoadingScreen } from "@/components/sections/PokedexLoadingScreen";
+import { BirthdayInviteSection } from "@/components/sections/BirthdayInviteSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { PokeballDecorations } from "@/components/decorations/PokeballDecorations";
@@ -60,6 +61,7 @@ export function InvitationPage() {
         <>
           <SiteHeader />
           <main className="relative z-[2] mx-auto max-w-[430px] pt-11">
+          <BirthdayInviteSection />
           <HeroSection />
           <TrainerProfileSection />
           <MemoryBadgesSection />

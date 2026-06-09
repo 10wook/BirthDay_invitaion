@@ -39,7 +39,7 @@ export function EndingSection() {
           <p className="font-display text-2xl text-text">{closingMessage}</p>
           <p className="mt-3 text-base font-bold text-poke-red">{closingSubMessage}</p>
         </div>
-        <p className="mt-6 text-xs text-text-light">Pokédex Entry Complete ✓</p>
+        <p className="mt-6 text-xs text-text-light">포켓몬 도감 등록 완료 ✓</p>
       </section>
     </SectionWrapper>
   );

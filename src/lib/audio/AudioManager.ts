@@ -7,8 +7,8 @@ class AudioManager {
   private unlocked = false;
   private bgmAudio: HTMLAudioElement | null = null;
   private sfxCache = new Map<string, HTMLAudioElement>();
+  private activeSfxNodes: HTMLAudioElement[] = [];
   private activeSfxCount = 0;
-  private readonly maxConcurrentSfx = 4;
 
   static getInstance(): AudioManager {
     if (!AudioManager.instance) {
@@ -40,8 +40,18 @@ class AudioManager {
     );
   }
 
+  stopAllSfx(): void {
+    for (const node of this.activeSfxNodes) {
+      node.pause();
+    }
+    this.activeSfxNodes = [];
+    this.activeSfxCount = 0;
+  }
+
   async playBgm(src: string, volume = DEFAULT_BGM_VOLUME): Promise<void> {
     if (!this.unlocked) return;
+
+    this.stopAllSfx();
 
     if (!this.bgmAudio || this.bgmAudio.src !== this.resolveSrc(src)) {
       this.bgmAudio?.pause();
@@ -74,26 +84,30 @@ class AudioManager {
   }
 
   playSfx(key: SfxKey): void {
-    if (!this.unlocked || this.activeSfxCount >= this.maxConcurrentSfx) return;
+    if (!this.unlocked) return;
     this.playUrl(SFX[key], SFX_VOLUME[key] ?? DEFAULT_SFX_VOLUME);
   }
 
   playCry(name: string, dexNo: number): void {
-    if (!this.unlocked || this.activeSfxCount >= this.maxConcurrentSfx) return;
+    if (!this.unlocked) return;
     this.playUrl(getPokemonCryUrl(name, dexNo), 0.55, getPokemonCryFallbackUrl(dexNo));
   }
 
   private playUrl(src: string, volume = DEFAULT_SFX_VOLUME, fallbackSrc?: string): void {
-    if (!this.unlocked || this.activeSfxCount >= this.maxConcurrentSfx) return;
+    if (!this.unlocked) return;
+
+    this.stopAllSfx();
 
     const cached = this.sfxCache.get(src);
     const audio = cached ? (cached.cloneNode() as HTMLAudioElement) : new Audio(src);
 
     audio.volume = volume;
     this.activeSfxCount += 1;
+    this.activeSfxNodes.push(audio);
 
     const cleanup = () => {
       this.activeSfxCount = Math.max(0, this.activeSfxCount - 1);
+      this.activeSfxNodes = this.activeSfxNodes.filter((n) => n !== audio);
     };
 
     audio.addEventListener("ended", cleanup, { once: true });

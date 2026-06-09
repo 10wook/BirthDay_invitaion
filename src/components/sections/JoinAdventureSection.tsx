@@ -29,7 +29,7 @@ export function JoinAdventureSection() {
   return (
     <SectionWrapper id="join-adventure">
       <section ref={sectionRef}>
-        <SectionTitle subtitle="Starter" title="Choose Your Partner" />
+        <SectionTitle subtitle="스타터 선택" title="파트너를 선택하고 모험에 참여하세요" />
         <div data-rsvp>
           <StarterSelect />
         </div>
