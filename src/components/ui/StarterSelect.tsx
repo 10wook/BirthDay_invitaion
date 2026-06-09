@@ -29,7 +29,7 @@ export function StarterSelect() {
   const [selected, setSelected] = useState<StarterChoice | null>(null);
   const [confirming, setConfirming] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const { playSfx, playCry, unlock } = useAudio();
+  const { playSfx, playCry, unlock, hasConsented } = useAudio();
 
   const backdropRef    = useRef<HTMLDivElement>(null);
   const trainerWrapRef = useRef<HTMLDivElement>(null);
@@ -44,9 +44,9 @@ export function StarterSelect() {
     setDuelId(Number.isNaN(id) ? 1 : id);
   }, []);
 
-  // 시네마틱 등장: 중앙에 크게 → 도트 계단식 축소
+  // 시네마틱 등장: 동의 후 + 마운트 후에만 실행
   useEffect(() => {
-    if (!mounted) return;
+    if (!mounted || !hasConsented) return;
 
     requestAnimationFrame(() => {
       const wrap     = trainerWrapRef.current;
@@ -86,7 +86,7 @@ export function StarterSelect() {
         "shrink",
       );
     });
-  }, [mounted]);
+  }, [mounted, hasConsented]);
 
   const starterChoices = getStarterChoicesByDuelId(duelId);
 
