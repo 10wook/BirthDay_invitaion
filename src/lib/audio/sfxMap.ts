@@ -1,4 +1,5 @@
 export const SFX = {
+  NINTENDO_BOOT: "/sfx/nintendo-boot.mp4",
   START: "/sfx/start.mp3",
   POKEDEX_OPEN: "/sfx/pokedex-open.m4a",
   PARTY_OPEN: "/sfx/party-open.mp3",
