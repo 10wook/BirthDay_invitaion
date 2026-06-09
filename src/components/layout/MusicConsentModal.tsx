@@ -64,27 +64,34 @@ export function MusicConsentModal({ isOpen, onAccept, onDecline }: MusicConsentM
   const dialogText = step === 1 ? STEPS[0] : step === 2 ? STEPS[1] : step >= 3 ? STEPS[2] : "";
 
   return createPortal(
-    <div className="fixed inset-0 z-[70]">
-      {/* White flash entrance */}
-      {flash && <div className="absolute inset-0 bg-white z-10" />}
+    <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
+      {/* Dark backdrop */}
+      <div className="absolute inset-0 bg-black/60" />
 
-      {/* Battle scene */}
+      {/* White flash – only inside modal */}
+      {flash && <div className="absolute inset-0 bg-white/90 z-10" />}
+
+      {/* Battle modal */}
       <div
-        className="absolute inset-0 flex flex-col"
+        className="relative w-full max-w-[400px] overflow-hidden rounded-2xl border-[4px] border-[#383838] shadow-[6px_6px_0_#000]"
         style={{
-          background: "linear-gradient(180deg, #90c8e8 0%, #90c8e8 55%, #68a858 55%, #68a858 100%)",
           opacity: visible ? 1 : 0,
-          transition: "opacity 0.2s",
+          transform: visible ? "scale(1)" : "scale(0.95)",
+          transition: "opacity 0.2s, transform 0.2s",
         }}
       >
-        {/* Enemy platform + sprites */}
-        <div className="relative flex-1">
-
+        {/* Battle field */}
+        <div
+          className="relative h-[200px]"
+          style={{
+            background: "linear-gradient(180deg, #90c8e8 0%, #90c8e8 58%, #68a858 58%, #68a858 100%)",
+          }}
+        >
           {/* Enemy HP box – slides in from left */}
           <div
-            className="absolute left-3 top-4 w-[160px]"
+            className="absolute left-3 top-3 w-[150px]"
             style={{
-              transform: visible ? "translateX(0)" : "translateX(-110%)",
+              transform: visible ? "translateX(0)" : "translateX(-120%)",
               transition: "transform 0.4s ease-out 0.1s",
             }}
           >
@@ -104,7 +111,7 @@ export function MusicConsentModal({ isOpen, onAccept, onDecline }: MusicConsentM
 
           {/* Chatot sprite – slides in from right */}
           <div
-            className="absolute right-4 top-2"
+            className="absolute right-6 top-0"
             style={{
               transform: visible ? "translateX(0)" : "translateX(130%)",
               transition: "transform 0.4s ease-out 0.1s",
@@ -116,13 +123,13 @@ export function MusicConsentModal({ isOpen, onAccept, onDecline }: MusicConsentM
               alt="페라페"
               width={96}
               height={96}
-              style={{ imageRendering: "pixelated", transform: "scale(2.2)", transformOrigin: "top right" }}
+              style={{ imageRendering: "pixelated", transform: "scale(1.8)", transformOrigin: "top right" }}
             />
           </div>
 
           {/* Enemy ground strip */}
           <div
-            className="absolute bottom-0 left-0 right-0 h-[18px]"
+            className="absolute bottom-0 left-0 right-0 h-[16px]"
             style={{
               background: "linear-gradient(180deg, #4a9840 0%, #2a6820 100%)",
               borderTop: "3px solid #383838",
@@ -132,24 +139,24 @@ export function MusicConsentModal({ isOpen, onAccept, onDecline }: MusicConsentM
 
         {/* Player ground strip */}
         <div
-          className="h-[22px]"
+          className="h-[18px]"
           style={{
             background: "linear-gradient(180deg, #58b048 0%, #387030 100%)",
-            borderTop: "3px solid #383838",
             borderBottom: "3px solid #383838",
           }}
         />
 
-        {/* Bottom: textbox area */}
-        <div className="bg-[#e8e8e8] border-t-[4px] border-[#383838]" style={{ minHeight: "130px" }}>
-          <div className="relative flex gap-2 p-2">
-
+        {/* Textbox area */}
+        <div className="bg-[#e8e8e8]">
+          <div className="flex gap-2 p-2">
             {/* Dialogue box */}
-            <div className="flex-1 rounded-lg border-[3px] border-[#a0a0a0] bg-white px-4 py-3 min-h-[90px] flex items-start">
+            <div className="flex-1 rounded-lg border-[3px] border-[#a0a0a0] bg-white px-4 py-3 min-h-[80px] flex items-start">
               {step > 0 && (
                 <p className="font-system text-[11px] leading-[1.8] text-text whitespace-pre-line">
                   {dialogText}
-                  {step > 0 && step < 3 && <span className="animate-bounce inline-block ml-1 text-[9px]">▼</span>}
+                  {step > 0 && step < 3 && (
+                    <span className="animate-bounce inline-block ml-1 text-[9px]">▼</span>
+                  )}
                 </p>
               )}
             </div>
@@ -157,7 +164,7 @@ export function MusicConsentModal({ isOpen, onAccept, onDecline }: MusicConsentM
             {/* Battle menu */}
             {showMenu && (
               <div
-                className="w-[130px] rounded-lg border-[3px] border-[#383838] bg-white shadow-[3px_3px_0_#383838] overflow-hidden self-start"
+                className="w-[120px] rounded-lg border-[3px] border-[#383838] bg-white shadow-[3px_3px_0_#383838] overflow-hidden self-start"
                 style={{ animation: "fadeIn 0.15s ease-out" }}
               >
                 <button
