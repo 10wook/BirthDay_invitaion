@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { registerGsapPlugins } from "@/lib/gsap";
 import { siteConfig } from "@/config/site";
 import { trainerConfig } from "@/config/trainer";
+import { Button } from "@/components/ui/Button";
 
 export function BirthdayInviteSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -71,6 +72,19 @@ export function BirthdayInviteSection() {
               <p className="font-display font-bold">{siteConfig.venueName}</p>
             </div>
           </div>
+        </div>
+
+        <div data-invite>
+          <Button
+            variant="primary"
+            size="lg"
+            sfx="CONFIRM"
+            onClick={() => {
+              document.getElementById("join-adventure")?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            ▶ 참석 설문 바로 가기
+          </Button>
         </div>
 
         <div data-invite className="game-textbox">
