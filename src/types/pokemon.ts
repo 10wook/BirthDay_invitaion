@@ -10,7 +10,6 @@ export interface PokemonEntry {
   hp: number;
   image: string;
   description: string;
-  whyChosen: string;
   story: string;
 }
 

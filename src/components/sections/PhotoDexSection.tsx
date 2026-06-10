@@ -65,6 +65,9 @@ export function PhotoDexSection() {
             </Swiper>
           )}
         </div>
+        <p className="font-system mt-3 text-center text-[8px] text-text-light">
+          귀(?)여운 한영욱 사진을 구경해보세요
+        </p>
       </section>
     </SectionWrapper>
   );

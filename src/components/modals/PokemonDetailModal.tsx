@@ -37,9 +37,6 @@ export function PokemonDetailModal({ pokemon, onClose }: PokemonDetailModalProps
       <GameTextBox label="도감 설명" className="mt-4" showCursor={false}>
         {pokemon.description}
       </GameTextBox>
-      <GameTextBox label="선택 이유" className="mt-3" showCursor={false}>
-        {pokemon.whyChosen}
-      </GameTextBox>
       <GameTextBox label="스토리" className="mt-3" showCursor={false}>
         {pokemon.story}
       </GameTextBox>
