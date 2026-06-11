@@ -16,7 +16,7 @@ export const memoryBadges: MemoryBadge[] = [
     description: "첫 모험의 시작",
     story: "처음으로 학교라는 세계에 발을 들였던 시절. 작은 교실에서 시작된 첫 번째 모험.",
     memory: "운동장을 뛰어다니며 친구들과 보낸 하루",
-    image: "/images/gallery/01.jpg",
+    image: "/images/hyw_pics/isu_elementary.png",
   },
   {
     id: "b2",
@@ -25,7 +25,7 @@ export const memoryBadges: MemoryBadge[] = [
     description: "성장의 시기",
     story: "조금씩 커가며 새로운 관심사와 꿈을 키워 나갔던 시절.",
     memory: "교실 뒤편에서 나눴던 수다와 웃음",
-    image: "/images/gallery/02.jpg",
+    image: "/images/hyw_pics/isu_middle.png",
   },
   {
     id: "b3",
@@ -34,7 +34,7 @@ export const memoryBadges: MemoryBadge[] = [
     description: "열정 가득한 시절",
     story: "목표를 향해 달리던 가장 치열하고 뜨거웠던 모험.",
     memory: "시험 끝나고 함께 보낸 소중한 시간",
-    image: "/images/gallery/03.jpg",
+    image: "/images/hyw_pics/IMG_8308.jpg",
   },
   {
     id: "b4",
@@ -43,7 +43,7 @@ export const memoryBadges: MemoryBadge[] = [
     description: "캠퍼스 모험",
     story: "경영학과와 AI융합학부에서 배우며 트레이너로 성장했던 대학 시절. 새로운 세계를 향한 큰 모험.",
     memory: "캠퍼스에서 만난 친구들과 함께한 시간",
-    image: "/images/gallery/04.jpg",
+    image: "/images/hyw_pics/IMG_0272.JPG",
   },
   {
     id: "b5",
@@ -52,7 +52,7 @@ export const memoryBadges: MemoryBadge[] = [
     description: "집중 수련",
     story: "짧지만 강렬했던 몰입의 시간. 실력을 한 단계 끌어올린 수련의 기간.",
     memory: "밤새 코딩하며 성장했던 순간",
-    image: "/images/gallery/05.jpg",
+    image: "/images/hyw_pics/IMG_4711.JPG",
   },
   {
     id: "b6",
@@ -61,7 +61,7 @@ export const memoryBadges: MemoryBadge[] = [
     description: "체력 단련",
     story: "몸과 마음을 단련하며 팀워크와 끈기를 배웠던 시기.",
     memory: "함께 땀 흘리며 이긴 경기",
-    image: "/images/gallery/01.jpg",
+    image: "/images/hyw_pics/IMG_9366.jpg",
   },
   {
     id: "b7",
@@ -70,7 +70,7 @@ export const memoryBadges: MemoryBadge[] = [
     description: "새로운 챕터",
     story: "사회인 트레이너로서 새로운 모험을 시작한 시기.",
     memory: "동료들과 함께 만든 첫 성과",
-    image: "/images/gallery/02.jpg",
+    image: "/images/hyw_pics/IMG_1461.jpg",
   },
   {
     id: "b8",
@@ -79,7 +79,7 @@ export const memoryBadges: MemoryBadge[] = [
     description: "새로운 지역 탐험",
     story: "낯선 곳을 향해 떠난 모험. 길 위에서 만난 풍경과 사람들.",
     memory: "함께 걸었던 여행길의 추억",
-    image: "/images/gallery/03.jpg",
+    image: "/images/hyw_pics/IMG_5901.jpg",
   },
 ];
 
