@@ -23,7 +23,7 @@ export const siteConfig: SiteConfig = {
   rsvpAttendUrl: env("NEXT_PUBLIC_RSVP_ATTEND_URL", "https://forms.google.com/"),
   rsvpDeclineUrl: env("NEXT_PUBLIC_RSVP_DECLINE_URL", "https://forms.google.com/"),
   rsvpMaybeUrl: env("NEXT_PUBLIC_RSVP_MAYBE_URL", "https://forms.google.com/"),
-  profileImageSrc: env("NEXT_PUBLIC_PROFILE_IMAGE", "/images/hero/profile.jpg"),
+  profileImageSrc: env("NEXT_PUBLIC_PROFILE_IMAGE", "/images/hyw_pics/IMG_2633.jpg"),
 };
 
 const PRODUCTION_URL = "https://birth-day-invitaion.vercel.app";
