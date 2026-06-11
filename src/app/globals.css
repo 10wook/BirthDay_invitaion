@@ -212,6 +212,29 @@ body {
 }
 .gallery-swiper .swiper-pagination-bullet-active { opacity: 1; }
 
+/* Route scenery — 하늘 구름 */
+.route-scenery__sky {
+  opacity: 0.95;
+}
+
+.route-scenery__cloud {
+  position: absolute;
+  opacity: 0.88;
+  height: auto;
+  image-rendering: pixelated;
+}
+
+.route-scenery__cloud--1 { left: 4%; top: 8%; animation: cloud-drift 28s linear infinite; }
+.route-scenery__cloud--2 { right: 6%; top: 14%; animation: cloud-drift 22s linear infinite reverse; }
+.route-scenery__cloud--3 { left: 38%; top: 4%; animation: cloud-drift 32s linear infinite; opacity: 0.75; }
+.route-scenery__cloud--4 { left: 62%; top: 18%; animation: cloud-drift 26s linear infinite reverse; opacity: 0.7; }
+.route-scenery__cloud--5 { right: 22%; top: 6%; animation: cloud-drift 30s linear infinite; opacity: 0.65; }
+
+@keyframes cloud-drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(12px); }
+}
+
 /* Legendary duel background */
 .legendary-duel {
   overflow: hidden;
