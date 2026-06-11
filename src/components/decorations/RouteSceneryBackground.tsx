@@ -13,6 +13,7 @@ const SKY_CLOUDS = [
 export function RouteSceneryBackground() {
   return (
     <div className="route-scenery pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden>
+      {/* 하늘 + 구름 */}
       <div className="route-scenery__sky absolute inset-x-0 top-0 h-[38vh]">
         {SKY_CLOUDS.map(({ className, w, small }) =>
           small ? (
@@ -22,6 +23,9 @@ export function RouteSceneryBackground() {
           ),
         )}
       </div>
+
+      {/* 지면 — 포켓몬 루트 맵 이미지 */}
+      <div className="route-scenery__ground absolute inset-x-0" style={{ top: "38vh", bottom: 0 }} />
     </div>
   );
 }
