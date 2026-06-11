@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { LenisProvider } from "@/components/layout/LenisProvider";
 import { AudioProvider } from "@/components/audio/AudioProvider";
 import { useAudio } from "@/components/audio/useAudio";
+import { initNintendoBootOnAccess } from "@/lib/audio/playNintendoBoot";
 import { FloatingMusicButton } from "./FloatingMusicButton";
 import { MusicConsentModal } from "./MusicConsentModal";
 
@@ -22,14 +23,27 @@ function AudioUI({ children }: { children: React.ReactNode }) {
     setConsented,
   } = useAudio();
   const [showModal, setShowModal] = useState(false);
+  const [pokedexReady, setPokedexReady] = useState(false);
+
+  useEffect(() => initNintendoBootOnAccess(), []);
 
   useEffect(() => {
-    if (hasConsented) return;
+    if (sessionStorage.getItem("pokedex_loaded") === "1") {
+      setPokedexReady(true);
+      return;
+    }
+    const onReady = () => setPokedexReady(true);
+    window.addEventListener("pokedex-ready", onReady);
+    return () => window.removeEventListener("pokedex-ready", onReady);
+  }, []);
+
+  useEffect(() => {
+    if (!pokedexReady || hasConsented) return;
     const consent = sessionStorage.getItem("audio_consent");
     if (consent) return;
     const timer = setTimeout(() => setShowModal(true), 800);
     return () => clearTimeout(timer);
-  }, [hasConsented]);
+  }, [pokedexReady, hasConsented]);
 
   const handleAccept = () => {
     setShowModal(false);

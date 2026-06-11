@@ -17,21 +17,7 @@ export function PokedexLoadingScreen({ onComplete }: PokedexLoadingScreenProps) 
   const scanRef = useRef<HTMLDivElement>(null);
   const [lines, setLines] = useState<string[]>([]);
   const [progressDone, setProgressDone] = useState(false);
-  const bootPlayedRef = useRef(false);
-  const { unlock, playSfx } = useAudio();
-
-  // 처음 클릭/터치 시 닌텐도 부팅 소리 — AudioManager와 독립적으로 재생
-  useEffect(() => {
-    const handler = () => {
-      if (bootPlayedRef.current) return;
-      bootPlayedRef.current = true;
-      const audio = new Audio("/sfx/nintendo-boot.mp4");
-      audio.volume = 0.7;
-      void audio.play().catch(() => {});
-    };
-    window.addEventListener("pointerdown", handler, { once: true });
-    return () => window.removeEventListener("pointerdown", handler);
-  }, []);
+  const { unlock } = useAudio();
 
   useEffect(() => {
     const messages = [
@@ -74,8 +60,8 @@ export function PokedexLoadingScreen({ onComplete }: PokedexLoadingScreenProps) 
 
   const handleStart = () => {
     unlock();
-    playSfx("START");
     sessionStorage.setItem("pokedex_loaded", "1");
+    window.dispatchEvent(new Event("pokedex-ready"));
     gsap.to(containerRef.current, {
       opacity: 0,
       duration: 0.5,
