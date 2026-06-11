@@ -84,11 +84,19 @@ export const memoryBadges: MemoryBadge[] = [
 ];
 
 export const galleryImages: GalleryImage[] = [
-  { src: "/images/gallery/01.jpg", alt: "Photo Dex 01" },
-  { src: "/images/gallery/02.jpg", alt: "Photo Dex 02" },
-  { src: "/images/gallery/03.jpg", alt: "Photo Dex 03" },
-  { src: "/images/gallery/04.jpg", alt: "Photo Dex 04" },
-  { src: "/images/gallery/05.jpg", alt: "Photo Dex 05" },
+  { src: "/images/hyw_pics/IMG_1108.JPG",  alt: "한영욱 01" },
+  { src: "/images/hyw_pics/IMG_1135.jpg",  alt: "한영욱 02" },
+  { src: "/images/hyw_pics/IMG_1525.jpg",  alt: "한영욱 03" },
+  { src: "/images/hyw_pics/IMG_2633.jpg",  alt: "한영욱 04" },
+  { src: "/images/hyw_pics/IMG_2652.JPG",  alt: "한영욱 05" },
+  { src: "/images/hyw_pics/IMG_2805.jpg",  alt: "한영욱 06" },
+  { src: "/images/hyw_pics/IMG_4711.JPG",  alt: "한영욱 07" },
+  { src: "/images/hyw_pics/IMG_4744.jpg",  alt: "한영욱 08" },
+  { src: "/images/hyw_pics/IMG_6057.jpg",  alt: "한영욱 09" },
+  { src: "/images/hyw_pics/IMG_7445.JPG",  alt: "한영욱 10" },
+  { src: "/images/hyw_pics/IMG_8308.jpg",  alt: "한영욱 11" },
+  { src: "/images/hyw_pics/IMG_9366.jpg",  alt: "한영욱 12" },
+  { src: "/images/hyw_pics/IMG_9520.JPG",  alt: "한영욱 13" },
 ];
 
 export const closingMessage = "축하해요, 트레이너!";
