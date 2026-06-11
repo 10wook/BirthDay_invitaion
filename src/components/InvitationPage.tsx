@@ -20,9 +20,6 @@ const MemoryBadgesSection = dynamic(() =>
 const PartyPokemonSection = dynamic(() =>
   import("@/components/sections/PartyPokemonSection").then((m) => m.PartyPokemonSection),
 );
-const AdventureLogSection = dynamic(() =>
-  import("@/components/sections/AdventureLogSection").then((m) => m.AdventureLogSection),
-);
 const PhotoDexSection = dynamic(
   () => import("@/components/sections/PhotoDexSection").then((m) => m.PhotoDexSection),
   { ssr: false },
@@ -68,7 +65,6 @@ export function InvitationPage() {
           <TrainerProfileSection />
           <MemoryBadgesSection />
           <PartyPokemonSection />
-          <AdventureLogSection />
           <PhotoDexSection />
           <VideoMemorySection />
           <NextLevelUpSection />
