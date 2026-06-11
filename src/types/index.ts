@@ -52,6 +52,7 @@ export interface MemoryBadge {
   story: string;
   memory: string;
   image: string;
+  imageStyle?: "cover" | "contain";
 }
 
 export interface GalleryImage {

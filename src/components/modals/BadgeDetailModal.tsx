@@ -21,7 +21,7 @@ export function BadgeDetailModal({ badge, onClose }: BadgeDetailModalProps) {
       title={`${badge.emoji} ${badge.name}`}
     >
       <div className="relative mb-4 aspect-[4/3] overflow-hidden border-[3px] border-dex-border bg-[#C8F0C0]">
-        <Image src={badge.image} alt={badge.name} fill className="object-cover" sizes="360px" />
+        <Image src={badge.image} alt={badge.name} fill className={badge.imageStyle === "contain" ? "object-contain p-4" : "object-cover"} sizes="360px" />
       </div>
       <GameTextBox label="설명" showCursor={false}>
         {badge.description}

@@ -17,6 +17,7 @@ export const memoryBadges: MemoryBadge[] = [
     story: "처음으로 학교라는 세계에 발을 들였던 시절. 작은 교실에서 시작된 첫 번째 모험.",
     memory: "운동장을 뛰어다니며 친구들과 보낸 하루",
     image: "/images/hyw_pics/isu_elementary.png",
+    imageStyle: "contain",
   },
   {
     id: "b2",
@@ -26,6 +27,7 @@ export const memoryBadges: MemoryBadge[] = [
     story: "조금씩 커가며 새로운 관심사와 꿈을 키워 나갔던 시절.",
     memory: "교실 뒤편에서 나눴던 수다와 웃음",
     image: "/images/hyw_pics/isu_middle.png",
+    imageStyle: "contain",
   },
   {
     id: "b3",
