@@ -128,12 +128,19 @@ function NextLevelDisplay() {
               <p className="font-display font-bold">{siteConfig.eventTime}</p>
             </div>
           </div>
-          <div className="flex items-start gap-3">
+          <div className="flex items-start gap-3 border-b-2 border-dex-border pb-3">
             <span className="text-xl">📍</span>
             <div>
               <p className="font-system text-[8px] text-text-light">장소</p>
               <p className="font-display font-bold">{siteConfig.venueName}</p>
               <p className="font-display text-sm text-text-light">{siteConfig.address}</p>
+            </div>
+          </div>
+          <div className="flex items-start gap-3">
+            <span className="text-xl">💰</span>
+            <div>
+              <p className="font-system text-[8px] text-text-light">참가비</p>
+              <p className="font-display font-bold">{siteConfig.fee}</p>
             </div>
           </div>
         </div>

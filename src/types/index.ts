@@ -7,6 +7,7 @@ export interface SiteConfig {
   venue: string;
   venueName: string;
   address: string;
+  fee: string;
   heroVideoSrc: string;
   memoryVideoSrc: string;
   musicSrc: string;

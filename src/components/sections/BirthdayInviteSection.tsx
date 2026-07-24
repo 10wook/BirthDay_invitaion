@@ -72,6 +72,13 @@ export function BirthdayInviteSection() {
               <p className="font-display font-bold">{siteConfig.venueName}</p>
             </div>
           </div>
+          <div className="flex items-center gap-3 px-4 py-3">
+            <span className="text-2xl">💰</span>
+            <div>
+              <p className="font-system text-[7px] text-text-light">참가비</p>
+              <p className="font-display font-bold">{siteConfig.fee}</p>
+            </div>
+          </div>
         </div>
 
         <div data-invite>
