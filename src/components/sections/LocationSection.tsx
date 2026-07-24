@@ -45,6 +45,21 @@ export function LocationSection() {
             </div>
           </div>
         </DexCard>
+        {siteConfig.mapEmbedUrl && (
+          <div
+            data-loc
+            className="mt-3 overflow-hidden rounded-xl border-2 border-dex-border shadow-[3px_3px_0_#383838]"
+          >
+            <iframe
+              title={`${siteConfig.venueName} 위치 지도`}
+              src={siteConfig.mapEmbedUrl}
+              className="h-[220px] w-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </div>
+        )}
         <div className="mt-3 flex flex-col gap-2">
           {maps.map((m) => (
             <Button key={m.label} variant="secondary" size="lg" href={m.href} target="_blank" rel="noopener noreferrer">

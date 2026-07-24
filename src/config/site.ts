@@ -31,7 +31,10 @@ export const siteConfig: SiteConfig = {
     "NEXT_PUBLIC_GOOGLE_MAP_URL",
     "https://www.google.com/maps/search/?api=1&query=서울특별시+서초구+청두곶6길+4",
   ),
-  mapEmbedUrl: process.env.NEXT_PUBLIC_MAP_EMBED_URL?.trim() || undefined,
+  mapEmbedUrl: env(
+    "NEXT_PUBLIC_MAP_EMBED_URL",
+    "https://maps.google.com/maps?q=서울특별시+서초구+청두곶6길+4&hl=ko&z=17&output=embed",
+  ),
   rsvpAttendUrl: env("NEXT_PUBLIC_RSVP_ATTEND_URL", "https://forms.google.com/"),
   rsvpDeclineUrl: env("NEXT_PUBLIC_RSVP_DECLINE_URL", "https://forms.google.com/"),
   rsvpMaybeUrl: env("NEXT_PUBLIC_RSVP_MAYBE_URL", "https://forms.google.com/"),
