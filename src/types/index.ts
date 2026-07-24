@@ -9,7 +9,6 @@ export interface SiteConfig {
   address: string;
   fee: string;
   heroVideoSrc: string;
-  memoryVideoSrc: string;
   musicSrc: string;
   kakaoMapUrl: string;
   naverMapUrl: string;

@@ -24,9 +24,6 @@ const PhotoDexSection = dynamic(
   () => import("@/components/sections/PhotoDexSection").then((m) => m.PhotoDexSection),
   { ssr: false },
 );
-const VideoMemorySection = dynamic(() =>
-  import("@/components/sections/VideoMemorySection").then((m) => m.VideoMemorySection),
-);
 const NextLevelUpSection = dynamic(
   () => import("@/components/sections/NextLevelUpSection").then((m) => m.NextLevelUpSection),
   { ssr: false },
@@ -66,7 +63,6 @@ export function InvitationPage() {
           <MemoryBadgesSection />
           <PartyPokemonSection />
           <PhotoDexSection />
-          <VideoMemorySection />
           <NextLevelUpSection />
           <LocationSection />
           <JoinAdventureSection />

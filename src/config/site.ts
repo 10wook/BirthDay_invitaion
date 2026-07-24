@@ -18,7 +18,6 @@ export const siteConfig: SiteConfig = {
   ),
   fee: env("NEXT_PUBLIC_FEE", "2만원"),
   heroVideoSrc: env("NEXT_PUBLIC_HERO_VIDEO_SRC", "/videos/hero-bg.mp4"),
-  memoryVideoSrc: env("NEXT_PUBLIC_MEMORY_VIDEO_SRC", "/videos/memory.mp4"),
   musicSrc: env("NEXT_PUBLIC_MUSIC_SRC", "/music/pokemon-title.m4a"),
   kakaoMapUrl: env(
     "NEXT_PUBLIC_KAKAO_MAP_URL",
