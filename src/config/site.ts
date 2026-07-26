@@ -35,9 +35,18 @@ export const siteConfig: SiteConfig = {
     "NEXT_PUBLIC_MAP_EMBED_URL",
     "https://maps.google.com/maps?q=서울특별시+서초구+청두곶6길+4&hl=ko&z=17&output=embed",
   ),
-  rsvpAttendUrl: env("NEXT_PUBLIC_RSVP_ATTEND_URL", "https://forms.google.com/"),
-  rsvpDeclineUrl: env("NEXT_PUBLIC_RSVP_DECLINE_URL", "https://forms.google.com/"),
-  rsvpMaybeUrl: env("NEXT_PUBLIC_RSVP_MAYBE_URL", "https://forms.google.com/"),
+  rsvpAttendUrl: env(
+    "NEXT_PUBLIC_RSVP_ATTEND_URL",
+    "https://docs.google.com/forms/d/e/1FAIpQLSfSHjgo79BJdJcKplGmvfgTJhkGqFEenr4B9LJsyqXdZ5yIlg/viewform?usp=header",
+  ),
+  rsvpDeclineUrl: env(
+    "NEXT_PUBLIC_RSVP_DECLINE_URL",
+    "https://docs.google.com/forms/d/e/1FAIpQLSfSHjgo79BJdJcKplGmvfgTJhkGqFEenr4B9LJsyqXdZ5yIlg/viewform?usp=header",
+  ),
+  rsvpMaybeUrl: env(
+    "NEXT_PUBLIC_RSVP_MAYBE_URL",
+    "https://docs.google.com/forms/d/e/1FAIpQLSfSHjgo79BJdJcKplGmvfgTJhkGqFEenr4B9LJsyqXdZ5yIlg/viewform?usp=header",
+  ),
   profileImageSrc: env("NEXT_PUBLIC_PROFILE_IMAGE", "/images/hyw_pics/IMG_2633.jpg"),
 };
 

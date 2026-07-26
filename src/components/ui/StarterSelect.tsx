@@ -109,8 +109,7 @@ export function StarterSelect() {
     const backdrop = backdropRef.current;
 
     if (!wrap) {
-      window.open(url, "_blank", "noopener,noreferrer");
-      setConfirming(false);
+      window.location.assign(url);
       return;
     }
 
@@ -121,11 +120,7 @@ export function StarterSelect() {
 
     const tl = gsap.timeline({
       onComplete: () => {
-        window.open(url, "_blank", "noopener,noreferrer");
-        // 리셋
-        gsap.set(wrap, { x: 0, y: 0, scale: 1, opacity: 1 });
-        if (backdrop) gsap.set(backdrop, { opacity: 0 });
-        setConfirming(false);
+        window.location.assign(url);
       },
     });
 
