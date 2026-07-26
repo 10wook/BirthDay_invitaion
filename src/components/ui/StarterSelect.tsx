@@ -97,52 +97,13 @@ export function StarterSelect() {
     playSfx(starter.sfx ?? "CLICK");
   };
 
-  // 참여 확정: 구석 → 중앙 확대 → 도트 계단 축소 → 이동
+  // 참여 확정: 같은 탭에서 구글 폼으로 바로 이동
   const confirm = () => {
     if (!selected || confirming) return;
     unlock();
     playSfx("CONFIRM");
     setConfirming(true);
-
-    const url      = siteConfig[selected.rsvpUrlKey];
-    const wrap     = trainerWrapRef.current;
-    const backdrop = backdropRef.current;
-
-    if (!wrap) {
-      window.location.assign(url);
-      return;
-    }
-
-    const rect   = wrap.getBoundingClientRect();
-    const deltaX = window.innerWidth  / 2 - (rect.left + rect.width  / 2);
-    const deltaY = window.innerHeight / 2 - (rect.top  + rect.height / 2);
-    const BIG    = 3.5;
-
-    const tl = gsap.timeline({
-      onComplete: () => {
-        window.location.assign(url);
-      },
-    });
-
-    // 1. 배경 어둡게
-    if (backdrop) tl.to(backdrop, { opacity: 1, duration: 0.2 });
-
-    // 2. 구석 → 중앙으로 확대 (계단)
-    tl.to(
-      wrap,
-      { x: deltaX, y: deltaY, scale: BIG, duration: 0.45, ease: "steps(8)" },
-      backdrop ? "-=0.05" : 0,
-    );
-
-    // 3. 잠깐 유지
-    tl.to(wrap, { duration: 0.3 });
-
-    // 4. 중앙에서 도트 계단으로 축소
-    tl.to(wrap, {
-      scale: 0,
-      duration: 0.4,
-      ease: "steps(7)",
-    });
+    window.location.href = siteConfig[selected.rsvpUrlKey];
   };
 
   const trainerSlug = TRAINER_SLUGS[duelId] ?? "red";
